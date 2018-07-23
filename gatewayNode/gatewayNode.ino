@@ -2,8 +2,8 @@
 #include <SPI.h>
 #include <PubSubClient.h>
 
-char ssid[] = "TP-LINK_AP_C37C"; //  Change this to your network SSID (name).
-char pass[] = "48229036";  // Change this your network password
+char ssid[] = "Wits-Wifi-Mobile"; //  Change this to your network SSID (name).
+char pass[] = "";  // Change this your network password
 char mqttUserName[] = "GatewayNode";  // Can be any name.
 char mqttPass[] = "YYC34E16RCBXMVW4";  // Change this your MQTT API Key from Account > MyProfile.
 char writeAPIKey[] = "Y7F65B7CI35LQNJ3";    // Change to your channel Write API Key.
@@ -22,8 +22,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void setup() {
   Serial.begin(9600);
   delay(10);
+  Serial.print("MAC: ");
+  Serial.println(WiFi.macAddress());
   Serial.println();
-  Serial.print("Connecting");
+  Serial.print("Connecting to ");
   Serial.println(ssid);
   
   WiFi.begin(ssid, pass);
@@ -37,7 +39,7 @@ void setup() {
   Serial.println(WiFi.localIP());
 
 String clientName="ESP-Thingspeak";
-  Serial.print("Connecting");
+  Serial.print("Connecting to ");
   Serial.print(server);
   Serial.print(" as ");
   Serial.println(clientName);
