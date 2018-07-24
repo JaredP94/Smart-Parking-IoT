@@ -18,10 +18,6 @@ void setup() {
   myRadio.setPALevel(RF24_PA_MIN); 
   myRadio.openWritingPipe( addresses[0]); 
   
-//  pinMode(LED_BUILTIN, OUTPUT);
-//  pinMode(A1, OUTPUT);
-//  digitalWrite(A1, HIGH);
-  
   delay(1000); 
 } 
 
