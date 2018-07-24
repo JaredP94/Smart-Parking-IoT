@@ -1,80 +1,77 @@
 #include <avr/power.h>
-#include <string.h>
+#include <SPI.h> 
+#include "nRF24L01.h" 
+#include "RF24.h" 
 
-const int trig1 = 2; 
-const int trig2 = 3; 
-const int trig3 = 4; 
-const int trig4 = 5; 
-const int echo1 = 6;
-const int echo2 = 7;
-const int echo3 = 8;
-const int echo4 = 9;
+const int numSensors = 4;
+const int trigger[numSensors] = {2, 3, 4, 5};
+const int echo[numSensors] = {6, 7, 8, 9};
 
-const float wait = 500;
+const float wait = 100;
 float timeoutDist;
 float timeout;
 
-struct bayInfo {
-  const char bayName[];
-  int occupancyStatus;
-}; 
+String bayInfo;
+String delimiter = "&";
 
- 
+RF24 myRadio (A0, 10); 
+byte addresses[][6] = {"1Node"}; 
+
+String dataTransmitted;
+
+String bayName[numSensors] = {"bay001", "bay002", "bay003", "bay004"};
+int isOccupied[numSensors] = {0, 0, 0, 0};
+
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin (9600);
   
-  pinMode(trig1, OUTPUT);
-  pinMode(trig2, OUTPUT);
-  pinMode(trig3, OUTPUT);
-  pinMode(trig4, OUTPUT);
-  pinMode(echo1, INPUT);
-  pinMode(echo2, INPUT);
-  pinMode(echo3, INPUT);
-  pinMode(echo4, INPUT);
+  pinMode(trigger[0], OUTPUT);
+  pinMode(trigger[1], OUTPUT);
+  pinMode(trigger[2], OUTPUT);
+  pinMode(trigger[3], OUTPUT);
+  pinMode(echo[0], INPUT);
+  pinMode(echo[1], INPUT);
+  pinMode(echo[2], INPUT);
+  pinMode(echo[3], INPUT);
 
-  timeoutDist = 100; //100cm
-  timeout = timeoutDist * 58; //microSeconds
+  timeoutDist = 100;            //100cm
+  timeout = timeoutDist * 58;   //corresponding time inmicroSeconds
 
-  bayInfo bay1 = {"bay001", 0};
-  bayInfo bay2 = {"bay002", 0};
-  bayInfo bay3 = {"bay003", 0};
-  bayInfo bay4 = {"bay004", 0};
+  Serial.println(F("Parking Data Transmit Test")); 
+  //dataTransmitted = 100; 
+  myRadio.begin(); 
+  myRadio.setChannel(108); 
+  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.openWritingPipe( addresses[0]); 
+  
+  delay(1000); 
 }
  
 void loop() {
- 
-  float distance1, distance2, distance3, distance4;
 
-  distance1 = getDistance(trig1, echo1);
-  bay1.occupancyStatus = checkOccupied(distance1);
-  Serial.print("Distance1: ");
-  Serial.print(distance1);
-  Serial.print(" cm \t");
-  Serial.print("status:")
-  Serial.println(bay1.occupancyStatus);
-  delay(wait);
+  dataTransmitted = "";
+  float distance[numSensors] = {0, 0, 0, 0};
 
-  distance2 = getDistance(trig2, echo2);
-  bay2.occupancyStatus = checkOccupied(distance2);
-  Serial.print("Distance2: ");
-  Serial.print(distance2);
-  Serial.println(" cm");
-  delay(wait);
+  for (int i = 0; i < numSensors; i++) {
+    distance[i] =  getDistance(trigger[i], echo[i]);
+    isOccupied[i] = checkOccupied(distance[i]);
+    Serial.print("Distance1: ");
+    Serial.print(distance[i]);
+    Serial.print(" cm \t");
+    Serial.print("status:");
+    Serial.println(isOccupied[i]);
+    delay(wait);
+  }
 
-  distance3 = getDistance(trig3, echo3);
-  bay3.occupancyStatus = checkOccupied(distance3);
-  Serial.print("Distance3: ");
-  Serial.print(distance3);
-  Serial.println(" cm");
-  delay(wait);
+  for (int j = 0; j < numSensors; j++) {
+    dataTransmitted += (bayName[j] + " " + isOccupied[j] + delimiter);
+  }
 
-  distance4 = getDistance(trig4, echo4);
-  bay4.occupancyStatus = checkOccupied(distance4);
-  Serial.print("Distance4: ");
-  Serial.print(distance4);
-  Serial.println(" cm\n");
-  delay(wait);
+  Serial.print("String for transmission: ");
+  Serial.println (dataTransmitted);
+  myRadio.write( &dataTransmitted, sizeof(dataTransmitted) );
+  delay(2000);
 }
 
 float getDistance(const int trigPin, const int echoPin){
@@ -90,13 +87,13 @@ float getDistance(const int trigPin, const int echoPin){
 }
 
 int checkOccupied(float distance) {
-  int occupanceStatus;
-  if (distance < 0 && distance <= 100){
-    occupanceStatus = 1;
+  int occupancyStatus;
+  if (distance > 0 && distance <= 100){
+    occupancyStatus = 1;
   } else {
-    occupanceStatus = 0;
+    occupancyStatus = 0;
   }
-  return occupanceStatus;
+  return occupancyStatus;
 }
 
 
