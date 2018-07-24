@@ -4,8 +4,6 @@
 #include <PubSubClient.h>
 #include "credentials.h"
 
-SimpleMap<String, String>* myMap;
-
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password
 char mqttUserName[] = "GatewayNode";  // Can be any name.
