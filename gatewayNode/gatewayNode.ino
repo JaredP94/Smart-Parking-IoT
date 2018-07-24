@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266Ping.h>
 #include <SPI.h>
 #include <PubSubClient.h>
 #include <SimpleMap.h>
@@ -67,6 +68,10 @@ void setup() {
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+
+  bool ret = Ping.ping("www.google.com");
+  Serial.println("Pinging Google:");
+  Serial.println(ret);
 
 String clientName="ESP-Thingspeak";
   Serial.print("Connecting to ");
