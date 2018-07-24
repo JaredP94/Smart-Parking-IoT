@@ -2,7 +2,6 @@
 #include <ESP8266Ping.h>
 #include <SPI.h>
 #include <PubSubClient.h>
-#include <SimpleMap.h>
 #include "credentials.h"
 
 SimpleMap<String, String>* myMap;
@@ -23,35 +22,8 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
 }
 
-String toJSON() {
-    String s;
-
-    s += '{';
-
-    for (int i = 0; i < myMap->size(); i++) {
-        s += "\"" + myMap->getKey(i) + "\":\"" + myMap->getData(i) + "\"";
-
-        if (i < myMap->size() - 1) s += ',';
-    }
-    s += "}";
-    return s;
-}
-
 void setup() {
   Serial.begin(9600);
-
-  // create a map
-  myMap = new SimpleMap<String, String>([](String& a, String& b) -> int {
-    if (a == b) return 0;
-    if (a > b) return 1;
-    /*if (a < b) */ return -1;
-  });
-
-  myMap->put("one", "1");
-  myMap->put("two", "2");
-  myMap->put("three", "3");
-
-  Serial.println(toJSON());
 
   Serial.print("MAC: ");
   Serial.println(WiFi.macAddress());
@@ -68,6 +40,8 @@ void setup() {
   Serial.println("WiFi connected");  
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+  Serial.println("Connection strength: ");
+  Serial.println(WiFi.RSSI());
 
   bool ret = Ping.ping("www.google.com");
   Serial.println("Pinging Google:");
