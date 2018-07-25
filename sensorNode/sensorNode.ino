@@ -25,16 +25,12 @@ int isOccupied[numSensors] = {0, 0, 0, 0};
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin (9600);
-  
-  pinMode(trigger[0], OUTPUT);
-  pinMode(trigger[1], OUTPUT);
-  pinMode(trigger[2], OUTPUT);
-  pinMode(trigger[3], OUTPUT);
-  pinMode(echo[0], INPUT);
-  pinMode(echo[1], INPUT);
-  pinMode(echo[2], INPUT);
-  pinMode(echo[3], INPUT);
 
+  for (int i = 0; i < numSensors; i++) {
+    pinMode(trigger[i], OUTPUT);
+    pinMode(echo[i], INPUT);
+  }
+  
   timeoutDist = 100;            //100cm
   timeout = timeoutDist * 58;   //corresponding time inmicroSeconds
 
@@ -50,27 +46,29 @@ void setup() {
  
 void loop() {
 
-  dataTransmitted = "";
   float distance[numSensors] = {0, 0, 0, 0};
 
   for (int i = 0; i < numSensors; i++) {
     distance[i] =  getDistance(trigger[i], echo[i]);
     isOccupied[i] = checkOccupied(distance[i]);
-    Serial.print("Distance1: ");
+    Serial.print("Distance: ");
     Serial.print(distance[i]);
     Serial.print(" cm \t");
     Serial.print("status:");
     Serial.println(isOccupied[i]);
     delay(wait);
   }
-
+  
+  dataTransmitted = "";
   for (int j = 0; j < numSensors; j++) {
     dataTransmitted += (bayName[j] + " " + isOccupied[j] + delimiter);
   }
 
-  Serial.print("String for transmission: ");
-  Serial.println (dataTransmitted);
-  myRadio.write( &dataTransmitted, sizeof(dataTransmitted) );
+  Serial.println("String for transmission: ");
+  Serial.println(dataTransmitted);
+  Serial.println(sizeof(dataTransmitted));
+  
+  myRadio.write(&dataTransmitted, 6);
   delay(2000);
 }
 
