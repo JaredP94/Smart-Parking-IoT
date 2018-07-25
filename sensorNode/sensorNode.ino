@@ -3,39 +3,44 @@
 #include "nRF24L01.h" 
 #include "RF24.h" 
 
-const int numSensors = 4;
-const int trigger[numSensors] = {2, 3, 4, 5};
-const int echo[numSensors] = {6, 7, 8, 9};
+#define NUM_PARKINGS 24
+#define NUM_SENSORS 4
+#define ROW_NUM 1
+
+// pin setup
+const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
+const int echo[NUM_SENSORS] = {6, 7, 8, 9};
 
 const float wait = 100;
 float timeoutDist;
 float timeout;
 
-String bayInfo;
-String delimiter = "&";
-
 RF24 myRadio (A0, 10); 
 byte addresses[][6] = {"1Node"}; 
 
-String dataTransmitted;
-
-String bayName[numSensors] = {"bay001", "bay002", "bay003", "bay004"};
-int isOccupied[numSensors] = {0, 0, 0, 0};
+signed char dataTransmitted[NUM_PARKINGS+1];
+const int parkingsTracked[4] = {1, 2, 3, 4};
+int isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
 
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin (9600);
 
-  for (int i = 0; i < numSensors; i++) {
+  for (int i = 0; i < NUM_SENSORS; i++) {
     pinMode(trigger[i], OUTPUT);
     pinMode(echo[i], INPUT);
+  }
+
+  // reset array 
+  dataTransmitted[0] = ROW_NUM;
+  for (int j = 1; j < NUM_PARKINGS+1; j++) {
+    dataTransmitted[j] = -1;
   }
   
   timeoutDist = 100;            //100cm
   timeout = timeoutDist * 58;   //corresponding time inmicroSeconds
 
   Serial.println(F("Parking Data Transmit Test")); 
-  //dataTransmitted = 100; 
   myRadio.begin(); 
   myRadio.setChannel(108); 
   myRadio.setPALevel(RF24_PA_MIN); 
@@ -46,11 +51,12 @@ void setup() {
  
 void loop() {
 
-  float distance[numSensors] = {0, 0, 0, 0};
+  float distance[NUM_SENSORS] = {0, 0, 0, 0};
 
-  for (int i = 0; i < numSensors; i++) {
+  for (int i = 0; i < NUM_SENSORS; i++) {
     distance[i] =  getDistance(trigger[i], echo[i]);
     isOccupied[i] = checkOccupied(distance[i]);
+    dataTransmitted[parkingsTracked[i]] = isOccupied[i];
     Serial.print("Distance: ");
     Serial.print(distance[i]);
     Serial.print(" cm \t");
@@ -59,16 +65,20 @@ void loop() {
     delay(wait);
   }
   
-  dataTransmitted = "";
-  for (int j = 0; j < numSensors; j++) {
-    dataTransmitted += (bayName[j] + " " + isOccupied[j] + delimiter);
-  }
+//  //dataTransmitted = "";
+//  for (int j = 0; j < NUM_SENSORS; j++) {
+//    dataTransmitted += (bayName[j] + " " + isOccupied[j] + delimiter);
+//  }
 
-  Serial.println("String for transmission: ");
-  Serial.println(dataTransmitted);
+  Serial.println("Array for transmission: ");
+  for (int k = 0; k < NUM_PARKINGS+1; k++) {
+    Serial.print(dataTransmitted[k]);
+    Serial.print(" ");
+  }
+  //Serial.println(dataTransmitted);
   Serial.println(sizeof(dataTransmitted));
   
-  myRadio.write(&dataTransmitted, 6);
+  myRadio.write(&dataTransmitted, sizeof(dataTransmitted));
   delay(2000);
 }
 
