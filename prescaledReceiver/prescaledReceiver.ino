@@ -5,13 +5,15 @@
 
 RF24 myRadio (A0, 10); 
 byte addresses[][6] = {"1Node"}; 
-int dataReceived; 
+
+String dataReceived = "";
+//int dataReceived;
 
 void setup() { 
   clock_prescale_set(clock_div_16);
   Serial.begin(9600); 
   delay(1000); 
-  Serial.println(F("RF24/Simple Receive data Test")); 
+  Serial.println(F("RF24/Simple Receive string Test")); 
   myRadio.begin(); 
   myRadio.setChannel(108); 
   myRadio.setPALevel(RF24_PA_MIN);
@@ -20,11 +22,17 @@ void setup() {
 } 
 
 void loop() { 
+  dataReceived = "";
+  int len;
+  
   if (myRadio.available()) { 
+    
     while (myRadio.available()) { 
-      myRadio.read( &dataReceived, sizeof(dataReceived) ); 
-    } Serial.print("Data received = "); 
-    Serial.println(dataReceived); 
+      myRadio.read( &dataReceived, len); 
+    }
+
+    Serial.print("Data received = "); 
+    Serial.println(dataReceived);
   } 
 }
 
