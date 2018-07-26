@@ -18,11 +18,17 @@ void loop() {
   Message msg(transceiver);
   msg.addField("timestamp", timestamp);
 
+  unsigned long StartTime = millis();
+
   if (msg.send()) {
     successCount++;  //  If successful, count the message sent successfully.
   } else {
     failCount++;  //  If failed, count the message that could not be sent.
   }
+
+  unsigned long CurrentTime = millis();
+  unsigned long ElapsedTime = CurrentTime - StartTime;
+  Serial.println("Transmission time: " + String(ElapsedTime));
   
   //  Show updates every 10 messages.
   Serial.print(F("Messages sent successfully: "));   
