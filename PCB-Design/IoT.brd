@@ -1993,7 +1993,7 @@ design rules under a new name.</description>
 <attribute name="NAME" x="63.7935" y="66.049490625" size="1.27238125" layer="25" ratio="10" rot="R270"/>
 <attribute name="PACKAGE" value="None" x="53.34" y="60.96" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PRICE" value="1.03 USD" x="53.34" y="60.96" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="53.327140625" y="66.04858125" size="1.272140625" layer="27" ratio="10" rot="R270"/>
+<attribute name="VALUE" x="49.517140625" y="67.31858125" size="1.272140625" layer="27" ratio="10"/>
 </element>
 </elements>
 <signals>
