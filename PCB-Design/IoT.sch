@@ -8,34 +8,34 @@
 </settings>
 <grid distance="0.1" unitdist="inch" unit="mm" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="no"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="no"/>
-<layer number="3" name="Route3" color="17" fill="1" visible="yes" active="no"/>
-<layer number="4" name="Route4" color="18" fill="1" visible="yes" active="no"/>
-<layer number="5" name="Route5" color="19" fill="1" visible="yes" active="no"/>
-<layer number="6" name="Route6" color="25" fill="1" visible="yes" active="no"/>
-<layer number="7" name="Route7" color="26" fill="1" visible="yes" active="no"/>
-<layer number="8" name="Route8" color="27" fill="1" visible="yes" active="no"/>
-<layer number="9" name="Route9" color="28" fill="1" visible="yes" active="no"/>
-<layer number="10" name="Route10" color="29" fill="1" visible="yes" active="no"/>
-<layer number="11" name="Route11" color="30" fill="1" visible="yes" active="no"/>
-<layer number="12" name="Route12" color="20" fill="1" visible="yes" active="no"/>
-<layer number="13" name="Route13" color="21" fill="1" visible="yes" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="no"/>
-<layer number="15" name="Route15" color="23" fill="1" visible="yes" active="no"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="no"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="no"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="no"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="no"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="no"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="no"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="no"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="no"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="no"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="no"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
+<layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
+<layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
+<layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
+<layer number="6" name="Route6" color="25" fill="1" visible="no" active="no"/>
+<layer number="7" name="Route7" color="26" fill="1" visible="no" active="no"/>
+<layer number="8" name="Route8" color="27" fill="1" visible="no" active="no"/>
+<layer number="9" name="Route9" color="28" fill="1" visible="no" active="no"/>
+<layer number="10" name="Route10" color="29" fill="1" visible="no" active="no"/>
+<layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
+<layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
+<layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="no"/>
+<layer number="15" name="Route15" color="23" fill="1" visible="no" active="no"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="no"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="no"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="no"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="no"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="no"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="no"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="no"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="no"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="no"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="no"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="no"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="no"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="no"/>
@@ -44,8 +44,8 @@
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="no"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="no"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="no"/>
-<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="no"/>
-<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="no"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="no" active="no"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="no" active="no"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="no"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="no"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="no"/>
@@ -53,19 +53,19 @@
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="no"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="no"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="no"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="no"/>
-<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="no"/>
-<layer number="48" name="Document" color="7" fill="1" visible="yes" active="no"/>
-<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="no"/>
-<layer number="50" name="dxf" color="7" fill="1" visible="yes" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="no"/>
-<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="yes" active="no"/>
-<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="yes" active="no"/>
-<layer number="56" name="wert" color="7" fill="1" visible="yes" active="no"/>
-<layer number="57" name="tCAD" color="7" fill="1" visible="yes" active="no"/>
-<layer number="59" name="tCarbon" color="7" fill="1" visible="yes" active="no"/>
-<layer number="60" name="bCarbon" color="7" fill="1" visible="yes" active="no"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="no"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="no" active="no"/>
+<layer number="48" name="Document" color="7" fill="1" visible="no" active="no"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="no" active="no"/>
+<layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="no"/>
+<layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
+<layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
+<layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
+<layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
@@ -156,68 +156,6 @@
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
-<library name="ngspice-simulation" urn="urn:adsk.eagle:library:527439">
-<description>SPICE compatible library parts</description>
-<packages>
-</packages>
-<symbols>
-<symbol name="FET-N" urn="urn:adsk.eagle:symbol:527451/1" library_version="16">
-<description>N-Type MOS Field Effect Transistor (MOSFET)</description>
-<pin name="G" x="0" y="0" length="middle"/>
-<pin name="D" x="15.24" y="12.7" length="middle" rot="R270"/>
-<pin name="S" x="15.24" y="-12.7" length="middle" rot="R90"/>
-<wire x1="9.144" y1="5.08" x2="9.144" y2="0" width="0.254" layer="94"/>
-<wire x1="9.144" y1="0" x2="9.144" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="11.43" y1="5.842" x2="11.43" y2="4.064" width="0.254" layer="94"/>
-<wire x1="11.43" y1="4.064" x2="11.43" y2="-4.064" width="0.254" layer="94"/>
-<wire x1="11.43" y1="-4.064" x2="11.43" y2="-6.096" width="0.254" layer="94"/>
-<wire x1="15.24" y1="4.064" x2="11.43" y2="4.064" width="0.254" layer="94"/>
-<wire x1="15.24" y1="4.064" x2="15.24" y2="7.62" width="0.254" layer="94"/>
-<wire x1="15.24" y1="-4.064" x2="15.24" y2="-7.62" width="0.254" layer="94"/>
-<wire x1="14.732" y1="-4.064" x2="11.43" y2="-4.064" width="0.254" layer="94"/>
-<wire x1="14.732" y1="-4.064" x2="13.97" y2="-3.302" width="0.254" layer="94"/>
-<wire x1="14.732" y1="-4.064" x2="13.97" y2="-4.826" width="0.254" layer="94"/>
-<wire x1="14.732" y1="-4.064" x2="15.24" y2="-4.064" width="0.254" layer="94"/>
-<wire x1="5.08" y1="0" x2="9.144" y2="0" width="0.254" layer="94"/>
-<circle x="12.192" y="0" radius="7.228965625" width="0.254" layer="94"/>
-<text x="20.32" y="5.08" size="1.778" layer="94">&gt;NAME</text>
-<text x="20.32" y="0" size="1.778" layer="94">&gt;SPICEMODEL</text>
-<text x="20.32" y="2.54" size="1.778" layer="94">&gt;VALUE</text>
-<text x="20.32" y="-2.54" size="1.778" layer="94">&gt;SPICEEXTRA</text>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="FET_N" urn="urn:adsk.eagle:component:527475/8" prefix="M" uservalue="yes" library_version="16">
-<description>N-Type MOS Field Effect Transistor (MOSFET)</description>
-<gates>
-<gate name="G$1" symbol="FET-N" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name="">
-<attribute name="_EXTERNAL_" value="" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-<spice>
-<pinmapping spiceprefix="M">
-<pinmap gate="G$1" pin="D" pinorder="1"/>
-<pinmap gate="G$1" pin="G" pinorder="2"/>
-<pinmap gate="G$1" pin="S" pinorder="3"/>
-</pinmapping>
-<model name="NFET">
-**********************
-* Autodesk EAGLE - Spice Model File
-* Date: 9/17/17
-* basic nfet intrinsic model
-**********************
-.MODEL NFET NMOS (LEVEL=3)</model>
-</spice>
-</deviceset>
-</devicesets>
-</library>
 <library name="diy-modules">
 <description>&lt;b&gt;DIY Modules for Arduino, Raspberry Pi, CubieBoard etc.&lt;/b&gt;
 &lt;br&gt;&lt;br&gt;
@@ -5442,21 +5380,156 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <packages>
 </packages>
 <symbols>
-<symbol name="GND" urn="urn:adsk.eagle:symbol:39417/1" library_version="1">
-<description>&lt;h3&gt;Ground Supply (Earth Ground Symbol)&lt;/h3&gt;</description>
-<pin name="3.3V" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
-<wire x1="-2.032" y1="0" x2="2.032" y2="0" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="-0.762" x2="1.27" y2="-0.762" width="0.254" layer="94"/>
-<wire x1="-0.508" y1="-1.524" x2="0.508" y2="-1.524" width="0.254" layer="94"/>
-<text x="0" y="-1.778" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
+<symbol name="DGND" urn="urn:adsk.eagle:symbol:39415/1" library_version="1">
+<description>&lt;h3&gt;Digital Ground Supply&lt;/h3&gt;</description>
+<wire x1="-1.905" y1="0" x2="1.905" y2="0" width="0.254" layer="94"/>
+<pin name="GND" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
+<text x="0" y="-0.254" size="1.778" layer="96" align="top-center">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="GND2" urn="urn:adsk.eagle:component:39442/1" prefix="GND" library_version="1">
-<description>&lt;h3&gt;Ground Supply (Earth Ground style)&lt;/h3&gt;
-&lt;p&gt;Ground supply with a traditional "earth ground" symbol.&lt;/p&gt;</description>
+<deviceset name="GND" urn="urn:adsk.eagle:component:39439/1" prefix="GND" library_version="1">
+<description>&lt;h3&gt;Ground Supply Symbol&lt;/h3&gt;
+&lt;p&gt;Generic signal ground supply symbol.&lt;/p&gt;</description>
 <gates>
-<gate name="G$1" symbol="GND" x="2.54" y="0"/>
+<gate name="1" symbol="DGND" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="IRL520N">
+<packages>
+<package name="TO220-VERT">
+<description>&lt;b&gt;TO 200 vertical&lt;/b&gt;</description>
+<wire x1="5.08" y1="-1.143" x2="4.953" y2="-4.064" width="0.127" layer="21"/>
+<wire x1="4.699" y1="-4.318" x2="4.953" y2="-4.064" width="0.127" layer="21"/>
+<wire x1="4.699" y1="-4.318" x2="-4.699" y2="-4.318" width="0.127" layer="21"/>
+<wire x1="-4.953" y1="-4.064" x2="-4.699" y2="-4.318" width="0.127" layer="21"/>
+<wire x1="-4.953" y1="-4.064" x2="-5.08" y2="-1.143" width="0.127" layer="21"/>
+<circle x="-4.4958" y="-3.7084" radius="0.254" width="0.127" layer="21"/>
+<text x="-5.089490625" y="-6.0565" size="1.27238125" layer="25" ratio="10">&gt;NAME</text>
+<text x="-5.08858125" y="-7.632859375" size="1.272140625" layer="27" ratio="10">&gt;VALUE</text>
+<text x="-3.1816" y="-3.1816" size="1.272640625" layer="51" ratio="10">1</text>
+<text x="-0.6363875" y="-3.181940625" size="1.27278125" layer="51" ratio="10">2</text>
+<text x="1.911559375" y="-3.185940625" size="1.27438125" layer="51" ratio="10">3</text>
+<rectangle x1="-5.34333125" y1="-0.763334375" x2="5.334" y2="0" layer="21"/>
+<rectangle x1="-5.34826875" y1="-1.2734" x2="-3.429" y2="-0.762" layer="21"/>
+<rectangle x1="-1.656309375" y1="-1.27408125" x2="-0.889" y2="-0.762" layer="21"/>
+<rectangle x1="-3.4416" y1="-1.27466875" x2="-1.651" y2="-0.762" layer="51"/>
+<rectangle x1="0.890971875" y1="-1.27281875" x2="1.651" y2="-0.762" layer="21"/>
+<rectangle x1="3.444840625" y1="-1.27586875" x2="5.334" y2="-0.762" layer="21"/>
+<rectangle x1="-0.891109375" y1="-1.273009375" x2="0.889" y2="-0.762" layer="51"/>
+<rectangle x1="1.6566" y1="-1.274309375" x2="3.429" y2="-0.762" layer="51"/>
+<pad name="1" x="-2.54" y="-2.54" drill="1.016" shape="long" rot="R90"/>
+<pad name="2" x="0" y="-2.54" drill="1.016" shape="long" rot="R90"/>
+<pad name="3" x="2.54" y="-2.54" drill="1.016" shape="long" rot="R90"/>
+</package>
+</packages>
+<symbols>
+<symbol name="N-MOSFET">
+<wire x1="0.762" y1="0.762" x2="0.762" y2="0" width="0.254" layer="94"/>
+<wire x1="0.762" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
+<wire x1="0.762" y1="3.175" x2="0.762" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0.762" y1="2.54" x2="0.762" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.762" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="0" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0.762" y1="-1.905" x2="0.762" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0.762" y1="-2.54" x2="0.762" y2="-3.175" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="0.762" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="3.81" y1="2.54" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="3.81" y1="0.508" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0.762" y1="2.54" x2="3.81" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="4.572" y1="0.762" x2="4.318" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="4.318" y1="0.508" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="3.81" y1="0.508" x2="3.302" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="3.302" y1="0.508" x2="3.048" y2="0.254" width="0.1524" layer="94"/>
+<circle x="2.54" y="-2.54" radius="0.3592" width="0" layer="94"/>
+<circle x="2.54" y="2.54" radius="0.3592" width="0" layer="94"/>
+<text x="-11.4503" y="0" size="1.781159375" layer="96">&gt;VALUE</text>
+<text x="-11.4809" y="2.55133125" size="1.78591875" layer="95">&gt;NAME</text>
+<polygon width="0.1524" layer="94">
+<vertex x="3.81" y="0.508"/>
+<vertex x="3.302" y="-0.254"/>
+<vertex x="4.318" y="-0.254"/>
+</polygon>
+<polygon width="0.1524" layer="94">
+<vertex x="1.016" y="0"/>
+<vertex x="2.032" y="0.762"/>
+<vertex x="2.032" y="-0.762"/>
+</polygon>
+<pin name="S" x="2.54" y="-5.08" visible="pad" length="short" direction="pwr" rot="R90"/>
+<pin name="G" x="-2.54" y="-2.54" visible="pad" length="short" direction="pwr"/>
+<pin name="D" x="2.54" y="5.08" visible="pad" length="short" direction="pwr" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IRL520N">
+<description>IRL520N</description>
+<gates>
+<gate name="G$1" symbol="N-MOSFET" x="-2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="TO220-VERT">
+<connects>
+<connect gate="G$1" pin="D" pad="2"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Unavailable"/>
+<attribute name="DESCRIPTION" value=" 100V Single N-Channel HEXFET Power MOSFET in a TO-220AB package "/>
+<attribute name="MF" value="International Rectifier"/>
+<attribute name="MP" value="IRL520N"/>
+<attribute name="PACKAGE" value="None"/>
+<attribute name="PRICE" value="1.03 USD"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="SparkFun-PowerSymbols">
+<description>&lt;h3&gt;SparkFun Power Symbols&lt;/h3&gt;
+This library contains power, ground, and voltage-supply symbols.
+&lt;br&gt;
+&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
+&lt;br&gt;
+&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
+&lt;br&gt;
+&lt;br&gt;
+You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+</packages>
+<symbols>
+<symbol name="VCC">
+<description>&lt;h3&gt;VCC Voltage Supply&lt;/h3&gt;</description>
+<wire x1="0.762" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-0.762" y2="1.27" width="0.254" layer="94"/>
+<pin name="VCC" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
+<text x="0" y="2.794" size="1.778" layer="96" align="bottom-center">&gt;VALUE</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="VCC" prefix="SUPPLY">
+<description>&lt;h3&gt;VCC Voltage Supply&lt;/h3&gt;
+&lt;p&gt;Positive voltage supply (traditionally for a BJT device, C=collector).&lt;/p&gt;</description>
+<gates>
+<gate name="G$1" symbol="VCC" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -5478,7 +5551,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </class>
 </classes>
 <parts>
-<part name="M1" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="FET_N" device=""/>
 <part name="M2" library="diy-modules" deviceset="ARDUINO-NANO-3.0" device=""/>
 <part name="R1" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ_KIT-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39661/1" value="10k"/>
 <part name="U$1" library="diy-modules" deviceset="ULTRASONIC-HC-SR04" device="#V"/>
@@ -5489,16 +5561,25 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="C1" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="025-040X050" package3d_urn="urn:adsk.eagle:package:26150/1"/>
 <part name="C2" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="025-040X050" package3d_urn="urn:adsk.eagle:package:26150/1"/>
 <part name="M3" library="diy-modules" deviceset="WIRELESS-NRF24L01" device=""/>
-<part name="GND1" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND2" device=""/>
+<part name="U$6" library="IRL520N" deviceset="IRL520N" device=""/>
+<part name="GND2" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="GND4" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="GND5" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="SUPPLY1" library="SparkFun-PowerSymbols" deviceset="VCC" device=""/>
+<part name="SUPPLY2" library="SparkFun-PowerSymbols" deviceset="VCC" device=""/>
+<part name="SUPPLY3" library="SparkFun-PowerSymbols" deviceset="VCC" device=""/>
+<part name="GND6" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="GND1" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="GND7" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
+<part name="GND3" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="M1" gate="G$1" x="86.36" y="20.32"/>
 <instance part="M2" gate="G$1" x="27.94" y="30.48"/>
-<instance part="R1" gate="G$1" x="81.28" y="-2.54"/>
+<instance part="R1" gate="G$1" x="88.9" y="12.7" rot="R90"/>
 <instance part="U$1" gate="G$1" x="-55.88" y="-88.9" rot="R90"/>
 <instance part="U$2" gate="G$1" x="-55.88" y="63.5" rot="R90"/>
 <instance part="U$3" gate="G$1" x="-55.88" y="12.7" rot="R90"/>
@@ -5506,8 +5587,18 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="U$5" gate="G$1" x="27.94" y="114.3"/>
 <instance part="C1" gate="G$1" x="60.96" y="7.62"/>
 <instance part="C2" gate="G$1" x="53.34" y="7.62"/>
-<instance part="M3" gate="G$1" x="25.4" y="-40.64" rot="R270"/>
-<instance part="GND1" gate="G$1" x="45.72" y="-7.62"/>
+<instance part="M3" gate="G$1" x="25.4" y="-43.18" rot="R270"/>
+<instance part="U$6" gate="G$1" x="99.06" y="22.86"/>
+<instance part="GND2" gate="1" x="101.6" y="2.54"/>
+<instance part="GND4" gate="1" x="63.5" y="43.18"/>
+<instance part="GND5" gate="1" x="88.9" y="2.54"/>
+<instance part="SUPPLY1" gate="G$1" x="66.04" y="111.76" rot="R270"/>
+<instance part="SUPPLY2" gate="G$1" x="55.88" y="48.26" rot="R270"/>
+<instance part="SUPPLY3" gate="G$1" x="-33.02" y="81.28"/>
+<instance part="GND6" gate="1" x="-2.54" y="55.88" rot="R180"/>
+<instance part="GND1" gate="1" x="53.34" y="-2.54"/>
+<instance part="GND7" gate="1" x="50.8" y="-22.86"/>
+<instance part="GND3" gate="1" x="60.96" y="116.84"/>
 </instances>
 <busses>
 </busses>
@@ -5515,22 +5606,14 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <net name="N$1" class="0">
 <segment>
 <pinref part="M2" gate="G$1" pin="A5"/>
-<pinref part="M1" gate="G$1" pin="G"/>
 <wire x1="45.72" y1="33.02" x2="86.36" y2="33.02" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="33.02" x2="86.36" y2="20.32" width="0.1524" layer="91"/>
+<pinref part="U$6" gate="G$1" pin="G"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="86.36" y1="-2.54" x2="86.36" y2="7.62" width="0.1524" layer="91"/>
-<wire x1="86.36" y1="7.62" x2="86.36" y2="20.32" width="0.1524" layer="91"/>
-<junction x="86.36" y="20.32"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="U$5" gate="G$1" pin="GND"/>
-<wire x1="45.72" y1="119.38" x2="58.42" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="M2" gate="G$1" pin="GND.2"/>
-<wire x1="58.42" y1="119.38" x2="58.42" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="58.42" y1="45.72" x2="45.72" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="20.32" x2="88.9" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="20.32" x2="88.9" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="33.02" x2="86.36" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="86.36" y1="20.32" x2="88.9" y2="20.32" width="0.1524" layer="91"/>
+<junction x="88.9" y="20.32"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -5548,32 +5631,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="66.04" y1="15.24" x2="66.04" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="-15.24" x2="33.02" y2="-15.24" width="0.1524" layer="91"/>
 <pinref part="M3" gate="G$1" pin="VCC"/>
-<wire x1="33.02" y1="-15.24" x2="33.02" y2="-17.78" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="3.3V" class="0">
-<segment>
-<pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="60.96" y1="2.54" x2="60.96" y2="0" width="0.1524" layer="91"/>
-<wire x1="60.96" y1="0" x2="53.34" y2="0" width="0.1524" layer="91"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="53.34" y1="0" x2="53.34" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="0" x2="45.72" y2="0" width="0.1524" layer="91"/>
-<junction x="53.34" y="0"/>
-<pinref part="GND1" gate="G$1" pin="3.3V"/>
-<wire x1="45.72" y1="0" x2="45.72" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="R1" gate="G$1" pin="1"/>
-<wire x1="45.72" y1="-2.54" x2="45.72" y2="-5.08" width="0.1524" layer="91"/>
-<wire x1="76.2" y1="-2.54" x2="71.12" y2="-2.54" width="0.1524" layer="91"/>
-<junction x="45.72" y="-2.54"/>
-<pinref part="M1" gate="G$1" pin="S"/>
-<wire x1="71.12" y1="-2.54" x2="45.72" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="7.62" x2="71.12" y2="7.62" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="7.62" x2="71.12" y2="-2.54" width="0.1524" layer="91"/>
-<junction x="71.12" y="-2.54"/>
-<pinref part="M3" gate="G$1" pin="GND"/>
-<wire x1="35.56" y1="-17.78" x2="35.56" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="35.56" y1="-2.54" x2="45.72" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="33.02" y1="-15.24" x2="33.02" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -5583,8 +5641,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-22.86" y1="-83.82" x2="119.38" y2="-83.82" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="-83.82" x2="119.38" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="38.1" x2="101.6" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="M1" gate="G$1" pin="D"/>
-<wire x1="101.6" y1="38.1" x2="101.6" y2="33.02" width="0.1524" layer="91"/>
 <pinref part="U$4" gate="G$1" pin="GND"/>
 <wire x1="-40.64" y1="-33.02" x2="-22.86" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="-33.02" x2="-22.86" y2="-83.82" width="0.1524" layer="91"/>
@@ -5597,6 +5653,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-40.64" y1="68.58" x2="-22.86" y2="68.58" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="68.58" x2="-22.86" y2="17.78" width="0.1524" layer="91"/>
 <junction x="-22.86" y="17.78"/>
+<pinref part="U$6" gate="G$1" pin="D"/>
+<wire x1="101.6" y1="27.94" x2="101.6" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
@@ -5606,16 +5664,17 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="76.2" y1="20.32" x2="76.2" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="-12.7" x2="30.48" y2="-12.7" width="0.1524" layer="91"/>
 <pinref part="M3" gate="G$1" pin="CE"/>
-<wire x1="30.48" y1="-12.7" x2="30.48" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="-12.7" x2="30.48" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="M2" gate="G$1" pin="D10"/>
-<wire x1="7.62" y1="17.78" x2="-12.7" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="-12.7" y1="-2.54" x2="27.94" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="7.62" x2="-5.08" y2="2.54" width="0.1524" layer="91"/>
 <pinref part="M3" gate="G$1" pin="CSN"/>
-<wire x1="27.94" y1="-2.54" x2="27.94" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="2.54" x2="27.94" y2="-20.32" width="0.1524" layer="91"/>
+<pinref part="M2" gate="G$1" pin="D10"/>
+<wire x1="7.62" y1="17.78" x2="5.08" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="5.08" y1="17.78" x2="-5.08" y2="7.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$16" class="0">
@@ -5623,23 +5682,23 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="M2" gate="G$1" pin="D13/SCK"/>
 <pinref part="M3" gate="G$1" pin="SCK"/>
 <wire x1="45.72" y1="12.7" x2="45.72" y2="2.54" width="0.1524" layer="91"/>
-<wire x1="45.72" y1="2.54" x2="25.4" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="2.54" x2="25.4" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="M2" gate="G$1" pin="D11/MOSI"/>
 <pinref part="M3" gate="G$1" pin="MOSI"/>
-<wire x1="7.62" y1="15.24" x2="22.86" y2="0" width="0.1524" layer="91"/>
-<wire x1="22.86" y1="0" x2="22.86" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="15.24" x2="22.86" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="12.7" x2="22.86" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="M2" gate="G$1" pin="D12/MISO"/>
 <pinref part="M3" gate="G$1" pin="MISO"/>
-<wire x1="7.62" y1="12.7" x2="20.32" y2="0" width="0.1524" layer="91"/>
-<wire x1="20.32" y1="0" x2="20.32" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="12.7" x2="7.62" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-10.16" x2="20.32" y2="-20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -5705,24 +5764,70 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <segment>
 <pinref part="U$1" gate="G$1" pin="TRIG"/>
 <wire x1="-40.64" y1="-88.9" x2="-7.62" y2="-55.88" width="0.1524" layer="91"/>
-<wire x1="-7.62" y1="-55.88" x2="-5.08" y2="-55.88" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="-55.88" x2="-5.08" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-7.62" y1="-55.88" x2="-7.62" y2="7.62" width="0.1524" layer="91"/>
 <pinref part="M2" gate="G$1" pin="D8"/>
-<wire x1="-5.08" y1="22.86" x2="7.62" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="-7.62" y1="7.62" x2="7.62" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$19" class="0">
+<net name="GND" class="0">
+<segment>
+<pinref part="M2" gate="G$1" pin="GND.2"/>
+<pinref part="GND4" gate="1" pin="GND"/>
+<wire x1="63.5" y1="45.72" x2="45.72" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="S"/>
+<pinref part="GND2" gate="1" pin="GND"/>
+<wire x1="101.6" y1="17.78" x2="101.6" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND5" gate="1" pin="GND"/>
+<pinref part="R1" gate="G$1" pin="1"/>
+<wire x1="88.9" y1="5.08" x2="88.9" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="M2" gate="G$1" pin="GND.1"/>
+<wire x1="7.62" y1="40.64" x2="-2.54" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="-2.54" y1="40.64" x2="-2.54" y2="53.34" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="C1" gate="G$1" pin="2"/>
+<wire x1="60.96" y1="2.54" x2="60.96" y2="0" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="0" x2="53.34" y2="0" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="0" x2="53.34" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="GND1" gate="1" pin="GND"/>
+<junction x="53.34" y="0"/>
+</segment>
+<segment>
+<pinref part="M3" gate="G$1" pin="GND"/>
+<wire x1="35.56" y1="-20.32" x2="50.8" y2="-20.32" width="0.1524" layer="91"/>
+<pinref part="GND7" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="U$5" gate="G$1" pin="GND"/>
+<pinref part="GND3" gate="1" pin="GND"/>
+<wire x1="45.72" y1="119.38" x2="60.96" y2="119.38" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VCC" class="0">
 <segment>
 <pinref part="M2" gate="G$1" pin="VIN"/>
-<wire x1="55.88" y1="111.76" x2="55.88" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
 <wire x1="55.88" y1="48.26" x2="45.72" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$5" gate="G$1" pin="5V"/>
+<pinref part="SUPPLY1" gate="G$1" pin="VCC"/>
+<wire x1="45.72" y1="111.76" x2="66.04" y2="111.76" width="0.1524" layer="91"/>
+</segment>
+<segment>
 <pinref part="U$2" gate="G$1" pin="VCC"/>
-<wire x1="48.26" y1="60.96" x2="-33.02" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="U$3" gate="G$1" pin="VCC"/>
 <wire x1="-33.02" y1="60.96" x2="-40.64" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="10.16" x2="-33.02" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="10.16" x2="-33.02" y2="60.96" width="0.1524" layer="91"/>
-<junction x="-33.02" y="60.96"/>
 <pinref part="U$4" gate="G$1" pin="VCC"/>
 <wire x1="-40.64" y1="-40.64" x2="-33.02" y2="-40.64" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="-40.64" x2="-33.02" y2="10.16" width="0.1524" layer="91"/>
@@ -5731,11 +5836,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <wire x1="-40.64" y1="-91.44" x2="-33.02" y2="-91.44" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="-91.44" x2="-33.02" y2="-40.64" width="0.1524" layer="91"/>
 <junction x="-33.02" y="-40.64"/>
-<pinref part="U$5" gate="G$1" pin="5V"/>
-<wire x1="45.72" y1="111.76" x2="48.26" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="111.76" x2="48.26" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="111.76" x2="45.72" y2="111.76" width="0.1524" layer="91"/>
-<junction x="45.72" y="111.76"/>
+<pinref part="SUPPLY3" gate="G$1" pin="VCC"/>
+<wire x1="-33.02" y1="81.28" x2="-33.02" y2="60.96" width="0.1524" layer="91"/>
+<junction x="-33.02" y="60.96"/>
 </segment>
 </net>
 </nets>
@@ -5758,12 +5861,6 @@ will not be understood (or retained) with this version.
 Since Version 8.3, EAGLE supports the association of 3D packages
 with devices in libraries, schematics, and board files. Those 3D
 packages will not be understood (or retained) with this version.
-</note>
-<note version="8.4" severity="warning">
-Since Version 8.4, EAGLE supports properties for SPICE simulation. 
-Probes in schematics and SPICE mapping objects found in parts and library devices
-will not be understood with this version. Update EAGLE to the latest version
-for full support of SPICE simulation. 
 </note>
 </compatibility>
 </eagle>
