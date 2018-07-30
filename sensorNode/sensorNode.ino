@@ -11,7 +11,7 @@
 const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
 const int echo[NUM_SENSORS] = {6, 7, 8, 9};
 
-const float wait = 100;
+const float wait = 10;
 float timeoutDist;
 float timeout;
 
@@ -30,6 +30,8 @@ void setup() {
     pinMode(trigger[i], OUTPUT);
     pinMode(echo[i], INPUT);
   }
+
+  pinMode(A5, OUTPUT);
 
   // reset array 
   dataTransmitted[0] = ROW_NUM;
@@ -52,6 +54,8 @@ void setup() {
 void loop() {
 
   float distance[NUM_SENSORS] = {0, 0, 0, 0};
+  digitalWrite(A5, HIGH);
+  //delay(100);
 
   for (int i = 0; i < NUM_SENSORS; i++) {
     distance[i] =  getDistance(trigger[i], echo[i]);
@@ -65,18 +69,14 @@ void loop() {
     delay(wait);
   }
   
-//  //dataTransmitted = "";
-//  for (int j = 0; j < NUM_SENSORS; j++) {
-//    dataTransmitted += (bayName[j] + " " + isOccupied[j] + delimiter);
-//  }
+  digitalWrite(A5, LOW);
 
   Serial.println("Array for transmission: ");
   for (int k = 0; k < NUM_PARKINGS+1; k++) {
     Serial.print(dataTransmitted[k]);
     Serial.print(" ");
   }
-  //Serial.println(dataTransmitted);
-  Serial.println(sizeof(dataTransmitted));
+  Serial.print("\n");
   
   myRadio.write(&dataTransmitted, sizeof(dataTransmitted));
   delay(2000);
