@@ -1,4 +1,4 @@
-package com.a18g11.dudewheresmyparking;
+package com.a18g11.parksmart;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

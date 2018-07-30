@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dude, Where\'s my Parking?</string>
+    <string name="app_name">ParkSmart</string>
     <string name="title_activity_parking_lots_list">ParkingLotsListActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
