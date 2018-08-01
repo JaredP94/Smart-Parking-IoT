@@ -1,52 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/custom_ripple"
     android:fitsSystemWindows="true"
-    tools:context=".ParkingLotsListActivity"
-    android:background="@drawable/custom_ripple">
+    tools:context=".ParkingLotsListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"></LinearLayout>
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="411dp"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:textAlignment="center"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:padding="10sp"
             android:text="@string/parking_lot_list_title"
             android:textAlignment="center"
-            android:textSize="24sp"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
-    </android.support.design.widget.AppBarLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/parking_lots"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/app_bar"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="10sp" />
+    </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/parking_lots"
-        android:layout_width="366dp"
-        android:layout_height="536dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_bar"
-        android:clickable="true"
-        android:focusable="true" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
