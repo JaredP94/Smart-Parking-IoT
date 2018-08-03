@@ -25,7 +25,7 @@ public class ParkingLot1 extends AppCompatActivity {
     private RelativeLayout mCLayout;
 
     GridView gridView;
-    private String[] parkingNumbers = new String[30*13];
+    private String[] parkingNumbers = new String[28*14];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,24 @@ public class ParkingLot1 extends AppCompatActivity {
         mActivity = ParkingLot1.this;
         mCLayout = (RelativeLayout) findViewById(R.id.relative_layout_parkings);
 
+        Integer rowCounter = 0;
+
         for(int index = 0; index < parkingNumbers.length; index++){
-            parkingNumbers[index] = "_";
+            if(index % 28 == 0) rowCounter = 0;
+            if(index < 28 || index >= 84 && index < 112 || index >= 168 && index < 196 || index >= 252 && index < 280 || index >= 336 && index < 364){
+                parkingNumbers[index] = " ";
+            }
+            else if((index % 28) % 15 == 0 && rowCounter!=1) {
+                parkingNumbers[index] = "1";
+                rowCounter++;
+            }
+            else if((index % 28) % 15 == 0 && rowCounter==1) {
+                parkingNumbers[index] = " ";
+                rowCounter++;
+            }
+            else{
+                parkingNumbers[index] = "1";
+            }
         }
 
         gridView = (GridView) findViewById(R.id.gridview_parkings);
@@ -49,7 +65,7 @@ public class ParkingLot1 extends AppCompatActivity {
                 TextView tv_cell = (TextView) super.getView(position,convertView,parent);
 
                 // Set the item background drawable
-                if(position != 7) {
+                if(parkingNumbers[position] == "1") {
                     tv_cell.setBackground(
                             ContextCompat.getDrawable(
                                     mContext, R.drawable.gridview_item_background
@@ -75,8 +91,8 @@ public class ParkingLot1 extends AppCompatActivity {
                 //tv_cell.setHeight(300); // In pixels
 
                 // Another way to change grid view row height
-                tv_cell.getLayoutParams().height = 100;
-                tv_cell.getLayoutParams().width = 60;
+                tv_cell.getLayoutParams().height = 72;
+                tv_cell.getLayoutParams().width = 65;
 
                 // Return the modified item
                 return tv_cell;

@@ -12,6 +12,7 @@
         android:id="@+id/gridview_parkings"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="30"
-        android:listSelector="@android:color/transparent" />
+        android:numColumns="28"
+        android:listSelector="@android:color/transparent"
+        android:stretchMode="columnWidth"/>
 </RelativeLayout>
