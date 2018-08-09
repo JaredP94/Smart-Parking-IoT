@@ -26,8 +26,9 @@ void setup() {
   
   Serial.println(F("RF24/Simple Receive string Test")); 
   myRadio.begin(); 
+  myRadio.setDataRate(RF24_250KBPS);
+  myRadio.setPALevel(RF24_PA_MIN); 
   myRadio.setChannel(108); 
-  myRadio.setPALevel(RF24_PA_MIN);
   myRadio.openReadingPipe(1, addresses[0]); 
   myRadio.startListening(); 
 } 
