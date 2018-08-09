@@ -2,6 +2,7 @@
 #include <SPI.h> 
 #include "nRF24L01.h" 
 #include "RF24.h" 
+#include "LowPower.h"
 
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
@@ -34,7 +35,13 @@ void setup() {
 } 
 
 void loop() { 
-  
+
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+
+  while(!myRadio.available()){Serial.println("Waiting for transmission");}
   if (myRadio.available()) { 
     while (myRadio.available()) { 
       myRadio.read( &dataReceived, sizeof(dataReceived)); 
