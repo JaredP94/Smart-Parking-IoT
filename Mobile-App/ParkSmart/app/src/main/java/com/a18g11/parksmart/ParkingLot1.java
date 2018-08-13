@@ -26,6 +26,7 @@ public class ParkingLot1 extends AppCompatActivity {
 
     GridView gridView;
     private String[] parkingNumbers = new String[28*14];
+    private Integer[] invalidParkings = new Integer[10];
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,8 +92,8 @@ public class ParkingLot1 extends AppCompatActivity {
                 //tv_cell.setHeight(300); // In pixels
 
                 // Another way to change grid view row height
-                tv_cell.getLayoutParams().height = 72;
-                tv_cell.getLayoutParams().width = 65;
+                tv_cell.getLayoutParams().height = 47;
+                tv_cell.getLayoutParams().width = 45;
 
                 // Return the modified item
                 return tv_cell;
