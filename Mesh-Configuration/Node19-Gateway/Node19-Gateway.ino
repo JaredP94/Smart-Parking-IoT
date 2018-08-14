@@ -4,7 +4,8 @@
 
 RF24 myRadio (2, 15); 
 RF24Network network(myRadio);
-int dataTransmitted; 
+int status; 
+bool received_results;
 
 // Octal Mapping
 const uint16_t this_node = 00;
@@ -19,7 +20,6 @@ bool ack16 = false;
 void setup() { 
   Serial.begin(9600); 
   Serial.println(F("Gateway - Node19")); 
-  dataTransmitted = 100; 
   SPI.begin();
   myRadio.begin(); 
   network.begin(90, this_node);
@@ -28,41 +28,47 @@ void setup() {
 } 
 
 void loop() { 
-  network.update();
-  delay(10);
-  //===== Receiving =====//
-  while ( network.available() ) {     // Is there any incoming data?
-    RF24NetworkHeader header;
-    unsigned long incomingData = 0;
-    network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
-    Serial.print("Data received: ");
-    Serial.println(incomingData);
-  }
-  delay(1000);
+  status = 1;
+  received_results = false;
   
+  network.update();
   //===== Sending =====//
   while(!ack4 && !ack10 && !ack16){
     RF24NetworkHeader header2(node4);     // (Address where the data is going)
-    ack4 = network.write(header2, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
+    ack4 = network.write(header2, &status, sizeof(status)); // Send the data
     Serial.print("Data transmitted to Node4: ");
-    Serial.println(dataTransmitted);
-    dataTransmitted++;
+    Serial.println(status);
     RF24NetworkHeader header3(node10);     // (Address where the data is going)
-    ack10 = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
+    ack10 = network.write(header3, &status, sizeof(status)); // Send the data
     Serial.print("Data transmitted to Node10: ");
-    Serial.println(dataTransmitted);
-    dataTransmitted++;
+    Serial.println(status);
     RF24NetworkHeader header4(node16);     // (Address where the data is going)
-    ack16 = network.write(header4, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
+    ack16 = network.write(header4, &status, sizeof(status)); // Send the data
     Serial.print("Data transmitted to Node16: ");
-    Serial.println(dataTransmitted);
-    dataTransmitted++;
+    Serial.println(status);
     delay(1000);
   }
 
   ack4 = false;
   ack10 = false;
   ack16 = false;
+
+  while(!received_results){
+    network.update();
+    //===== Receiving =====//
+    while ( network.available() ) {     // Is there any incoming data?
+      RF24NetworkHeader header;
+      unsigned long incomingData = 0;
+      network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
+      Serial.print("Data received: ");
+      Serial.println(incomingData);
+      if (header.from_node == 01){
+        received_results = true;
+      }
+    }
+  }
+
+  ESP.deepSleep(32e6);
 }
 
 
