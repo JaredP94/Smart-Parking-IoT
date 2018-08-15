@@ -89,8 +89,8 @@ public class ParkingLot1 extends AppCompatActivity {
                 //tv_cell.setHeight(300); // In pixels
 
                 // Another way to change grid view row height
-                tv_cell.getLayoutParams().height = 47;
-                tv_cell.getLayoutParams().width = 45;
+                tv_cell.getLayoutParams().height = 71;
+                tv_cell.getLayoutParams().width = 65;
 
                 // Return the modified item
                 return tv_cell;
