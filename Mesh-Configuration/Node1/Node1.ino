@@ -4,10 +4,15 @@
 #include "RF24Network.h"
 #include "LowPower.h"
 
+#define NUM_SENSORS 4
+
 RF24 myRadio (A0, 10); 
 RF24Network network(myRadio);
 int dataTransmitted;
 bool returned_results;
+
+signed char parkingsTracked[NUM_SENSORS] = {2, 3, 4, 5};
+int isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
 
 // Octal Mapping
 const uint16_t this_node = 011;
@@ -25,11 +30,11 @@ void setup() {
   dataTransmitted = 100; 
 }
 void loop() {
-  returned_results = false;
-
   for(int i = 0; i < 4; i++){
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
+
+  returned_results = false;
 
   while(!returned_results){
     network.update();
@@ -43,10 +48,10 @@ void loop() {
       if (header.from_node == 01) {    // If data comes from Node 4
         RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
   
-        bool ok = network.write(header2, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
-        Serial.print("Data transmitted: ");
-        Serial.println(dataTransmitted);
-        dataTransmitted++;
+        bool ok = network.write(header2, &parkingsTracked, sizeof(parkingsTracked)); // Send the data
+        Serial.print("Data transmitted to row admin: ");
+        //Serial.println(dataTransmitted);
+        //dataTransmitted++;
         returned_results = true;
       }
     }
