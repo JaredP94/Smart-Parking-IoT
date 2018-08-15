@@ -2,19 +2,16 @@ package com.a18g11.parksmart;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.group18g11.parksmart.R;
 
@@ -36,7 +33,7 @@ public class ParkingLot1 extends AppCompatActivity {
         // Get the application context
         mContext = getApplicationContext();
         mActivity = ParkingLot1.this;
-        mCLayout = (RelativeLayout) findViewById(R.id.relative_layout_parkings);
+        mCLayout = findViewById(R.id.relative_layout_parkings);
 
         Integer rowCounter = 0;
 
