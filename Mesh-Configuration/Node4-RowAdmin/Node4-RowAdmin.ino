@@ -23,9 +23,11 @@ const uint16_t node6 = 051;
 
 bool status_received;
 bool returned_results;
-bool returned_results_node1;
-bool returned_results_node2;
-bool returned_results_node3;
+bool ack1;
+bool ack2;
+bool ack3;
+bool ack5;
+bool ack6;
 
 unsigned long current_time;
 unsigned long receive_duration;
@@ -71,9 +73,11 @@ void loop() {
 
   status_received = false;
   returned_results = false;
-  returned_results_node1 = false;
-  returned_results_node2 = false;
-  returned_results_node3 = false;
+  ack1 = false;
+  ack2 = false;
+  ack3 = false;
+  ack5 = false;
+  ack6 = false;
 
   // reset array 
   for (int j = 0; j < NUM_PARKINGS; j++) {
@@ -142,7 +146,7 @@ void loop() {
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i] = isOccupied[i];
         }
-        returned_results_node1 = true;
+        ack1 = true;
       }
       
       else if (header2.from_node == 021) {    // If data comes from Node 1
@@ -150,7 +154,7 @@ void loop() {
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+4] = isOccupied[i];
         }
-        returned_results_node2 = true;
+        ack2 = true;
       }
       
       else if (header2.from_node == 031) {    // If data comes from Node 1
@@ -158,10 +162,26 @@ void loop() {
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+8] = isOccupied[i];
         }
-        returned_results_node3 = true;
+        ack3 = true;
+      }
+
+      else if (header2.from_node == 041) {    // If data comes from Node 1
+        Serial.println(F("Data received from Node5"));
+        for (int i = 0; i < NUM_SENSORS; i++){
+          dataTransmitted[i+16] = isOccupied[i];
+        }
+        ack5 = true;
+      }
+
+      else if (header2.from_node == 051) {    // If data comes from Node 1
+        Serial.println(F("Data received from Node6"));
+        for (int i = 0; i < NUM_SENSORS; i++){
+          dataTransmitted[i+20] = isOccupied[i];
+        }
+        ack6 = true;
       }
       
-      if (returned_results_node1 && returned_results_node2 && returned_results_node3){
+      if (ack1 && ack2 && ack3 && ack5 && ack6){
         RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
          bool ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
         Serial.print("Data transmitted to gateway ");
