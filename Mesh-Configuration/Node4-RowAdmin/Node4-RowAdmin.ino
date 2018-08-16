@@ -132,6 +132,16 @@ void loop() {
         Serial.print("Data transmitted to Node3: ");
         Serial.println(incomingData);
 
+        RF24NetworkHeader header7(node5);     // (Address where the data is going)
+        bool ok5 = network.write(header7, &incomingData, sizeof(incomingData)); // Send the data
+        Serial.print("Data transmitted to Node5: ");
+        Serial.println(incomingData);
+
+        RF24NetworkHeader header8(node6);     // (Address where the data is going)
+        bool ok6 = network.write(header6, &incomingData, sizeof(incomingData)); // Send the data
+        Serial.print("Data transmitted to Node6: ");
+        Serial.println(incomingData);
+
         status_received = true;
         current_time = millis();
       }
