@@ -60,7 +60,7 @@ void loop() {
       Serial.print("Data received: ");
       Serial.println(incomingData);
       if (header.from_node == 01) {    // If data comes from Node 4
-        unsigned char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+        signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         float distance[NUM_SENSORS] = {0, 0, 0, 0};
         
         digitalWrite(A5, HIGH);
