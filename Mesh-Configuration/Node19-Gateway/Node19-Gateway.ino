@@ -23,6 +23,10 @@ bool ack4 = false;
 bool ack10 = false;
 bool ack16 = false;
 
+bool row1 = false;
+bool row2 = false;
+bool row3 = false;
+
 void setup() { 
   Serial.begin(9600); 
   Serial.println(F("Gateway - Node19")); 
@@ -78,13 +82,47 @@ void loop() {
       RF24NetworkHeader header;
       network.read(header, &dataReceived, sizeof(dataReceived)); // Read the incoming data
       Serial.print("Data received from admin: ");
-      if (header.from_node == 01){
-        Serial.println("Array received: ");
+      
+      if (header.from_node == node4){
+        memcpy(parkingBayData[0], dataReceived, NUM_PARKINGS * sizeof(char));
+        
+        Serial.println("Array received from RowAdmin4: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(dataReceived[k]);
+          Serial.print(parkingBayData[0][k]);
           Serial.print(" ");
         }
         Serial.println("");
+        
+        row1 = true;
+      }
+
+      else if (header.from_node == node10){
+        memcpy(parkingBayData[1], dataReceived, NUM_PARKINGS * sizeof(char));
+        
+        Serial.println("Array received from RowAdmin10: ");
+        for (int k = 0; k < NUM_PARKINGS; k++) {
+          Serial.print(parkingBayData[1][k]);
+          Serial.print(" ");
+        }
+        Serial.println("");
+        
+        row2 = true;
+      }
+
+      else if (header.from_node == node16){
+        memcpy(parkingBayData[2], dataReceived, NUM_PARKINGS * sizeof(char));
+        
+        Serial.println("Array received from RowAdmin16: ");
+        for (int k = 0; k < NUM_PARKINGS; k++) {
+          Serial.print(parkingBayData[2][k]);
+          Serial.print(" ");
+        }
+        Serial.println("");
+        
+        row3 = true;
+      }
+
+      if (row1 && row2 && row3){
         received_results = true;
       }
     }
