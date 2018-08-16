@@ -59,7 +59,7 @@ void loop() {
       network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
       Serial.print("Data received: ");
       Serial.println(incomingData);
-      if (header.from_node == 01) {    // If data comes from Node 4
+      if (header.from_node == row_admin) {    // If data comes from Node 4
         signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         float distance[NUM_SENSORS] = {0, 0, 0, 0};
         

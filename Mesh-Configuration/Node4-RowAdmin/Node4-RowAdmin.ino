@@ -94,7 +94,7 @@ void loop() {
       Serial.print("Data received: ");
       Serial.println(incomingData);
       
-      if (header.from_node == 00){
+      if (header.from_node == gateway_node){
         signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         float distance[NUM_SENSORS] = {0, 0, 0, 0};
         
@@ -151,7 +151,7 @@ void loop() {
       signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
       network.read(header2, &isOccupied, sizeof(isOccupied)); // Read the incoming data
       
-      if (header2.from_node == 011) {    // If data comes from Node 1
+      if (header2.from_node == node1) {    // If data comes from Node 1
         Serial.println(F("Data received from Node1"));
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i] = isOccupied[i];
@@ -159,7 +159,7 @@ void loop() {
         ack1 = true;
       }
       
-      else if (header2.from_node == 021) {    // If data comes from Node 1
+      else if (header2.from_node == node2) {    // If data comes from Node 1
         Serial.println(F("Data received from Node2"));
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+4] = isOccupied[i];
@@ -167,7 +167,7 @@ void loop() {
         ack2 = true;
       }
       
-      else if (header2.from_node == 031) {    // If data comes from Node 1
+      else if (header2.from_node == node3) {    // If data comes from Node 1
         Serial.println(F("Data received from Node3"));
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+8] = isOccupied[i];
@@ -175,7 +175,7 @@ void loop() {
         ack3 = true;
       }
 
-      else if (header2.from_node == 041) {    // If data comes from Node 1
+      else if (header2.from_node == node5) {    // If data comes from Node 1
         Serial.println(F("Data received from Node5"));
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+16] = isOccupied[i];
@@ -183,7 +183,7 @@ void loop() {
         ack5 = true;
       }
 
-      else if (header2.from_node == 051) {    // If data comes from Node 1
+      else if (header2.from_node == node6) {    // If data comes from Node 1
         Serial.println(F("Data received from Node6"));
         for (int i = 0; i < NUM_SENSORS; i++){
           dataTransmitted[i+20] = isOccupied[i];

@@ -45,7 +45,7 @@ void loop() {
       network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
       Serial.print("Data received: ");
       Serial.println(incomingData);
-      if (header.from_node == 01) {    // If data comes from Node 4
+      if (header.from_node == row_admin) {    // If data comes from Node 4
         RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
   
         bool ok = network.write(header2, &parkingsTracked, sizeof(parkingsTracked)); // Send the data
