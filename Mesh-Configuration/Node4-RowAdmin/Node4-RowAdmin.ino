@@ -33,7 +33,7 @@ unsigned long current_time;
 unsigned long receive_duration;
 
 // pin setup
-const int trigger[NUM_SENSORS] = {13, 14, 15, 16};
+const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
 const int echo[NUM_SENSORS] = {6, 7, 8, 9};
 
 const float wait = 10;
