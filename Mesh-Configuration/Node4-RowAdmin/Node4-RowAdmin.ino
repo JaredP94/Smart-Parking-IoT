@@ -23,6 +23,7 @@ const uint16_t node6 = 051;
 
 bool status_received;
 bool returned_results;
+bool timer_running;
 bool ack1;
 bool ack2;
 bool ack3;
@@ -73,6 +74,7 @@ void loop() {
 
   status_received = false;
   returned_results = false;
+  timer_running = false;
   ack1 = false;
   ack2 = false;
   ack3 = false;
@@ -143,71 +145,82 @@ void loop() {
         Serial.println(incomingData);
 
         status_received = true;
+        timer_running = true;
         current_time = millis();
       }
     }
-    while ( network.available() ) {     // Is there any incoming data?
-      RF24NetworkHeader header2;
-      signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
-      network.read(header2, &isOccupied, sizeof(isOccupied)); // Read the incoming data
-      
-      if (header2.from_node == node1) {    // If data comes from Node 1
-        Serial.println(F("Data received from Node1"));
-        for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i] = isOccupied[i];
+    while ( network.available() || timer_running) {     // Is there any incoming data?
+      network.update();
+      if (network.available()){
+        RF24NetworkHeader header2;
+        signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+        network.read(header2, &isOccupied, sizeof(isOccupied)); // Read the incoming data
+        
+        if (header2.from_node == node1) {    // If data comes from Node 1
+          Serial.println(F("Data received from Node1"));
+          for (int i = 0; i < NUM_SENSORS; i++){
+            dataTransmitted[i] = isOccupied[i];
+          }
+          ack1 = true;
         }
-        ack1 = true;
-      }
-      
-      else if (header2.from_node == node2) {    // If data comes from Node 1
-        Serial.println(F("Data received from Node2"));
-        for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i+4] = isOccupied[i];
+        
+        else if (header2.from_node == node2) {    // If data comes from Node 1
+          Serial.println(F("Data received from Node2"));
+          for (int i = 0; i < NUM_SENSORS; i++){
+            dataTransmitted[i+4] = isOccupied[i];
+          }
+          ack2 = true;
         }
-        ack2 = true;
-      }
-      
-      else if (header2.from_node == node3) {    // If data comes from Node 1
-        Serial.println(F("Data received from Node3"));
-        for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i+8] = isOccupied[i];
+        
+        else if (header2.from_node == node3) {    // If data comes from Node 1
+          Serial.println(F("Data received from Node3"));
+          for (int i = 0; i < NUM_SENSORS; i++){
+            dataTransmitted[i+8] = isOccupied[i];
+          }
+          ack3 = true;
         }
-        ack3 = true;
-      }
-
-      else if (header2.from_node == node5) {    // If data comes from Node 1
-        Serial.println(F("Data received from Node5"));
-        for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i+16] = isOccupied[i];
+  
+        else if (header2.from_node == node5) {    // If data comes from Node 1
+          Serial.println(F("Data received from Node5"));
+          for (int i = 0; i < NUM_SENSORS; i++){
+            dataTransmitted[i+16] = isOccupied[i];
+          }
+          ack5 = true;
         }
-        ack5 = true;
-      }
-
-      else if (header2.from_node == node6) {    // If data comes from Node 1
-        Serial.println(F("Data received from Node6"));
-        for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i+20] = isOccupied[i];
+  
+        else if (header2.from_node == node6) {    // If data comes from Node 1
+          Serial.println(F("Data received from Node6"));
+          for (int i = 0; i < NUM_SENSORS; i++){
+            dataTransmitted[i+20] = isOccupied[i];
+          }
+          ack6 = true;
         }
-        ack6 = true;
-      }
-      
-      if (ack1 && ack2 && ack3 && ack5 && ack6){
-        RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
-         bool ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
-        Serial.print("Data transmitted to gateway ");
-        returned_results = true;
-      }
-      else {
-        receive_duration = millis() - current_time;
-        if ( receive_duration > TIMEOUT_TIME ){
+        
+        if (ack1 && ack2 && ack3 && ack5 && ack6){
           RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
           bool ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
           Serial.print("Data transmitted to gateway ");
           returned_results = true;
         }
       }
+      receive_duration = millis() - current_time;
+      
+      if ( receive_duration > TIMEOUT_TIME ){
+        Serial.println(F("Timeout"));
+        bool ok = false;
+        while (!ok){
+          Serial.println(F("Attempt transmission to gateway"));
+          RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
+          ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
+        }
+        Serial.print("Data transmitted to gateway ");
+        returned_results = true;
+        timer_running = false;
+      }
     }
   }
+
+  Serial.flush();
 }
 
 float getDistance(const int trigPin, const int echoPin){
