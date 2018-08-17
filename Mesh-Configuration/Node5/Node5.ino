@@ -57,7 +57,7 @@ void loop() {
       RF24NetworkHeader header;
       unsigned long incomingData = 0;
       network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
-      Serial.print("Data received: ");
+      Serial.println("Data received: ");
       Serial.println(incomingData);
       if (header.from_node == row_admin) {    // If data comes from Node 4
         signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
@@ -80,11 +80,13 @@ void loop() {
         
         RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
         bool ok = network.write(header2, &isOccupied, sizeof(isOccupied)); // Send the data
-        Serial.print("Data transmitted to row admin: ");
+        Serial.println("Data transmitted to row admin: ");
         returned_results = true;
       }
     }
   }
+
+  Serial.flush();
 }
 
 float getDistance(const int trigPin, const int echoPin){
