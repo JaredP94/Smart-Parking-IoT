@@ -25,7 +25,7 @@ float timeout;
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
-  Serial.println(F("Sensor Node - Node1")); 
+  Serial.println(F("Sensor Node - Node6")); 
   
   SPI.begin();
   myRadio.begin();
@@ -85,6 +85,8 @@ void loop() {
       }
     }
   }
+
+  Serial.flush();
 }
 
 float getDistance(const int trigPin, const int echoPin){
