@@ -88,7 +88,7 @@ void loop() {
 
   while(!returned_results){
     network.update();
-    //===== Receiving =====//
+
     while ( network.available() && !status_received) {     // Is there any incoming data?
       RF24NetworkHeader header;
       unsigned long incomingData = 0;
