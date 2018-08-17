@@ -13,20 +13,18 @@ RF24 myRadio (A0, 10);
 RF24Network network(myRadio);
 
 // Octal Mapping
-const uint16_t this_node = 01;
+const uint16_t this_node = 02;
 const uint16_t gateway_node = 00;
-const uint16_t node1 = 011;
-const uint16_t node2 = 021;
-const uint16_t node3 = 031;
-const uint16_t node5 = 041;
-const uint16_t node6 = 051;
+const uint16_t node1 = 012;
+const uint16_t node2 = 022;
+const uint16_t node5 = 032;
+const uint16_t node6 = 042;
 
 bool status_received;
 bool returned_results;
 bool timer_running;
 bool ack1;
 bool ack2;
-bool ack3;
 bool ack5;
 bool ack6;
 
@@ -47,7 +45,7 @@ signed char parkingsTracked[NUM_SENSORS] = {-1, -1, -1, -1};
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
-  Serial.println(F("Row Admin / Sensor Node - Node4")); 
+  Serial.println(F("Row Admin / Sensor Node - Node9")); 
   
   SPI.begin();
   myRadio.begin();
@@ -77,7 +75,6 @@ void loop() {
   timer_running = false;
   ack1 = false;
   ack2 = false;
-  ack3 = false;
   ack5 = false;
   ack6 = false;
 
@@ -116,7 +113,7 @@ void loop() {
         digitalWrite(A5, LOW);
         
         for (int i = 0; i < NUM_SENSORS; i++){
-          dataTransmitted[i+12] = isOccupied[i];
+          dataTransmitted[i+8] = isOccupied[i];
         }
         
         RF24NetworkHeader header4(node1);     // (Address where the data is going)
@@ -127,11 +124,6 @@ void loop() {
         RF24NetworkHeader header5(node2);     // (Address where the data is going)
         bool ok2 = network.write(header5, &incomingData, sizeof(incomingData)); // Send the data
         Serial.print("Data transmitted to Node2: ");
-        Serial.println(incomingData);
-
-        RF24NetworkHeader header6(node3);     // (Address where the data is going)
-        bool ok3 = network.write(header6, &incomingData, sizeof(incomingData)); // Send the data
-        Serial.print("Data transmitted to Node3: ");
         Serial.println(incomingData);
 
         RF24NetworkHeader header7(node5);     // (Address where the data is going)
@@ -171,14 +163,6 @@ void loop() {
           }
           ack2 = true;
         }
-        
-        else if (header2.from_node == node3) {    // If data comes from Node 1
-          Serial.println(F("Data received from Node3"));
-          for (int i = 0; i < NUM_SENSORS; i++){
-            dataTransmitted[i+8] = isOccupied[i];
-          }
-          ack3 = true;
-        }
   
         else if (header2.from_node == node5) {    // If data comes from Node 1
           Serial.println(F("Data received from Node5"));
@@ -196,7 +180,7 @@ void loop() {
           ack6 = true;
         }
         
-        if (ack1 && ack2 && ack3 && ack5 && ack6){
+        if (ack1 && ack2 && ack5 && ack6){
           RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
           bool ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
           Serial.print("Data transmitted to gateway ");

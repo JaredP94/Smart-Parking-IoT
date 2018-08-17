@@ -13,13 +13,13 @@ RF24 myRadio (A0, 10);
 RF24Network network(myRadio);
 
 // Octal Mapping
-const uint16_t this_node = 01;
+const uint16_t this_node = 03;
 const uint16_t gateway_node = 00;
-const uint16_t node1 = 011;
-const uint16_t node2 = 021;
-const uint16_t node3 = 031;
-const uint16_t node5 = 041;
-const uint16_t node6 = 051;
+const uint16_t node1 = 013;
+const uint16_t node2 = 023;
+const uint16_t node3 = 033;
+const uint16_t node5 = 043;
+const uint16_t node6 = 053;
 
 bool status_received;
 bool returned_results;
@@ -47,7 +47,7 @@ signed char parkingsTracked[NUM_SENSORS] = {-1, -1, -1, -1};
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
-  Serial.println(F("Row Admin / Sensor Node - Node4")); 
+  Serial.println(F("Row Admin / Sensor Node - Node16")); 
   
   SPI.begin();
   myRadio.begin();
