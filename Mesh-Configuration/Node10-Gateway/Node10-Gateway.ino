@@ -21,6 +21,7 @@ const uint16_t this_node = 00;
 const uint16_t node4 = 01;
 const uint16_t node9 = 02;
 const uint16_t node16 = 03;
+const uint16_t transmitter = 04;
 
 bool ack4 = false;
 bool ack9 = false;
@@ -41,7 +42,7 @@ float timeout;
 void setup() { 
   clock_prescale_set(clock_div_16);
   Serial.begin(9600); 
-  Serial.println(F("Gateway - Node19")); 
+  Serial.println(F("Gateway - Node10")); 
   
   for (int i = 0; i < NUM_PARKINGS; i++) {
     dataReceived[i] = -1;
@@ -74,6 +75,7 @@ void loop() {
   for(int i = 0; i < 1; i++){
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
+  LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
   
   status = 1;
   received_results = false;
@@ -134,7 +136,7 @@ void loop() {
       else if (header.from_node == node9 && !row2){
         memcpy(parkingBayData[1], dataReceived, NUM_PARKINGS * sizeof(char));
         
-        Serial.println("Array received from RowAdmin10: ");
+        Serial.println("Array received from RowAdmin9: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
           Serial.print(parkingBayData[1][k]);
           Serial.print(" ");
@@ -189,6 +191,13 @@ void loop() {
   for (int k = 0; k < NUM_PARKINGS; k++) {
     Serial.print(parkingBayData[1][k]);
     Serial.print(" ");
+  }
+
+  RF24NetworkHeader header5(transmitter);
+  for (int i = 0; i < NUM_ROWS; i++){
+    bool ok = network.write(header5, &parkingBayData[i], sizeof(parkingBayData[i])); // Send the data
+    Serial.print("Row Data transmitted to Transmitter: ");
+    Serial.println(i);
   }
 
   Serial.flush();
