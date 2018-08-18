@@ -196,6 +196,7 @@ void loop() {
           Serial.println(F("Attempt transmission to gateway"));
           RF24NetworkHeader header3(gateway_node);     // (Address where the data is going)
           ok = network.write(header3, &dataTransmitted, sizeof(dataTransmitted)); // Send the data
+          delay(10);
         }
         Serial.print("Data transmitted to gateway ");
         returned_results = true;
