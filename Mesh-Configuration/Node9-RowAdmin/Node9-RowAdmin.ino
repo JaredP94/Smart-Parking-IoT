@@ -39,8 +39,8 @@ const float wait = 10;
 float timeoutDist;
 float timeout;
 
-signed char dataTransmitted[NUM_PARKINGS];
-signed char parkingsTracked[NUM_SENSORS] = {-1, -1, -1, -1};
+char dataTransmitted[NUM_PARKINGS];
+char parkingsTracked[NUM_SENSORS] = {-1, -1, -1, -1};
 
 void setup() {
   clock_prescale_set(clock_div_16);
@@ -80,7 +80,7 @@ void loop() {
 
   // reset array 
   for (int j = 0; j < NUM_PARKINGS; j++) {
-    dataTransmitted[j] = -1;
+    dataTransmitted[j] = 2;
   }
 
   while(!returned_results){
@@ -94,7 +94,7 @@ void loop() {
       Serial.println(incomingData);
       
       if (header.from_node == gateway_node){
-        signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+        char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         float distance[NUM_SENSORS] = {0, 0, 0, 0};
         
         digitalWrite(A5, HIGH);
@@ -145,7 +145,7 @@ void loop() {
       network.update();
       if (network.available()){
         RF24NetworkHeader header2;
-        signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+        char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         network.read(header2, &isOccupied, sizeof(isOccupied)); // Read the incoming data
         
         if (header2.from_node == node1) {    // If data comes from Node 1
