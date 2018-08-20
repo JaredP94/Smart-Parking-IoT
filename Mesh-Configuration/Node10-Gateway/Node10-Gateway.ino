@@ -13,8 +13,8 @@ RF24 myRadio (A0, 10);
 RF24Network network(myRadio);
 int status; 
 bool received_results;
-signed char dataReceived[NUM_PARKINGS];
-signed char parkingBayData[NUM_ROWS][NUM_PARKINGS];
+char dataReceived[NUM_PARKINGS];
+char parkingBayData[NUM_ROWS][NUM_PARKINGS];
 
 // Octal Mapping
 const uint16_t this_node = 00;
@@ -104,7 +104,6 @@ void loop() {
     ack16 = network.write(header4, &status, sizeof(status)); // Send the data
     Serial.print("Data transmitted to Node16: ");
     Serial.println(status);
-    delay(1000);
   }
 
   ack4 = false;
@@ -125,7 +124,7 @@ void loop() {
         
         Serial.println("Array received from RowAdmin4: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[0][k]);
+          Serial.print((int)parkingBayData[0][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -138,7 +137,7 @@ void loop() {
         
         Serial.println("Array received from RowAdmin9: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[1][k]);
+          Serial.print((int)parkingBayData[1][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -151,7 +150,7 @@ void loop() {
         
         Serial.println("Array received from RowAdmin16: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[2][k]);
+          Serial.print((int)parkingBayData[2][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -165,7 +164,7 @@ void loop() {
     }
   }
 
-  signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+  char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
   float distance[NUM_SENSORS] = {0, 0, 0, 0};
   
   digitalWrite(A5, HIGH);
@@ -189,7 +188,7 @@ void loop() {
 
   Serial.println("Final row2 values: ");
   for (int k = 0; k < NUM_PARKINGS; k++) {
-    Serial.print(parkingBayData[1][k]);
+    Serial.print((int)parkingBayData[1][k]);
     Serial.print(" ");
   }
 
