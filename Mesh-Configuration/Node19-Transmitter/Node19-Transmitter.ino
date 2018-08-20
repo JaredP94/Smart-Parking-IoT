@@ -1,19 +1,42 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266Ping.h>
+#include <PubSubClient.h>
 #include <SPI.h>  
 #include "RF24.h" 
 #include "RF24Network.h"
+#include "credentials.h"
 
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
 #define NUM_ROWS 3
+#define SLEEP_TIME 8e6
+
+char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
+char pass[] = WIFI_PASSWORD;  // Change this your network password
+char mqttUserName[] = "TransmitterNode";  // Can be any name.
+char mqttPass[] = "YYC34E16RCBXMVW4";  // Change this your MQTT API Key from Account > MyProfile.
+char writeAPIKey[] = "Y7F65B7CI35LQNJ3";    // Change to your channel Write API Key.
+long channelID = 542645;
+char* topic ="channels/542645/publish/Y7F65B7CI35LQNJ3";
+char* server = "mqtt.thingspeak.com";
+
+WiFiClient wifiClient;
+PubSubClient client(server, 1883, wifiClient);
+
+void callback(char* topic, byte* payload, unsigned int length) {
+  // handle message arrived
+}
 
 RF24 myRadio (2, 15);
 RF24Network network(myRadio);
 
+unsigned long current_time;
+unsigned long upload_duration;
 bool received_results;
 bool incoming;
 int row_number;
-signed char dataReceived[NUM_PARKINGS];
-signed char parkingBayData[NUM_ROWS][NUM_PARKINGS];
+char dataReceived[NUM_PARKINGS];
+char parkingBayData[NUM_ROWS][NUM_PARKINGS];
 
 // Octal Mapping
 const uint16_t this_node = 04;
@@ -43,6 +66,44 @@ void setup() {
   network.begin(90, this_node);
   myRadio.setDataRate(RF24_250KBPS);
   myRadio.setPALevel(RF24_PA_MIN); 
+
+  WiFi.begin(ssid, pass);
+  Serial.print("MAC: ");
+  Serial.println(WiFi.macAddress());
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  
+  WiFi.begin(ssid, pass);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected");  
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+  Serial.println("Connection strength: ");
+  Serial.println(WiFi.RSSI());
+
+  String clientName="ESP-Thingspeak";
+  Serial.print("Connecting to ");
+  Serial.print(server);
+  Serial.print(" as ");
+  Serial.println(clientName);
+
+  client.loop();
+  
+  if (client.connect((char*) clientName.c_str())) {
+    Serial.println("Connected to MQTT broker");
+    Serial.print("Topic");
+    Serial.println(topic);
+  }
+  else {
+    Serial.println("MQTT connect failed");
+    Serial.println("Will reset and try again...");
+    abort();
+  }
 } 
 
 void loop() { 
@@ -112,7 +173,54 @@ void loop() {
     delay(0);
   }
 
+  current_time = micros();
+
+  String row1_string;
+  String row2_string;
+  String row3_string;
+  
+  for (int i = 0; i < NUM_PARKINGS; i++){
+    row1_string += (int)parkingBayData[0][i];
+  }
+
+  for (int i = 0; i < NUM_PARKINGS; i++){
+    row2_string += (int)parkingBayData[1][i];
+  }
+
+  for (int i = 0; i < NUM_PARKINGS; i++){
+    row3_string += (int)parkingBayData[2][i];
+  }
+  
+  Serial.println(F("Converted:"));
+  Serial.println(row1_string);
+  Serial.println(row2_string);
+  Serial.println(row3_string);
+
+  String payload="field1=";
+  payload+=WiFi.RSSI();
+  payload+="&field2=";
+  payload+=row1_string;
+  payload+="&field3=";
+  payload+=row2_string;
+  payload+="&field4=";
+  payload+=row3_string;
+  payload+="&status=MQTTPUBLISH";
+  
+  if (client.connected()){
+    Serial.print("Sending payload: ");
+    Serial.println(payload);
+    
+    if (client.publish(topic, (char*) payload.c_str())) {
+      Serial.println("Publish ok");
+    }
+    else {
+      Serial.println("Publish failed");
+    }
+  }
+
+  upload_duration = micros() - current_time;
+
   Serial.flush();
 
-  ESP.deepSleep(8e6);
+  ESP.deepSleep(SLEEP_TIME - upload_duration);
 }
