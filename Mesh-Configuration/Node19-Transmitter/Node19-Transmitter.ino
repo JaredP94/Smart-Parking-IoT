@@ -9,11 +9,11 @@
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
 #define NUM_ROWS 3
-#define SLEEP_TIME 8e6
+#define SLEEP_TIME 16e6
 
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password
-char mqttUserName[] = "TransmitterNode";  // Can be any name.
+char mqttUserName[] = "GatewayNode";  // Can be any name.
 char mqttPass[] = "YYC34E16RCBXMVW4";  // Change this your MQTT API Key from Account > MyProfile.
 char writeAPIKey[] = "Y7F65B7CI35LQNJ3";    // Change to your channel Write API Key.
 long channelID = 542645;
@@ -21,7 +21,7 @@ char* topic ="channels/542645/publish/Y7F65B7CI35LQNJ3";
 char* server = "mqtt.thingspeak.com";
 
 WiFiClient wifiClient;
-PubSubClient client(server, 1883, wifiClient);
+PubSubClient client(wifiClient);
 
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
@@ -92,8 +92,7 @@ void setup() {
   Serial.print(" as ");
   Serial.println(clientName);
 
-  client.loop();
-  
+  client.setServer(server, 1883);   // Set the MQTT broker details.
   if (client.connect((char*) clientName.c_str())) {
     Serial.println("Connected to MQTT broker");
     Serial.print("Topic");
@@ -113,6 +112,13 @@ void loop() {
   row2 = false;
   row3 = false;
 
+  if (!client.connected()) 
+  {
+    reconnect();
+  }
+
+  client.loop();   // Call the loop continuously to establish connection to the server.
+
   while(!received_results){
     network.update();
 
@@ -131,7 +137,7 @@ void loop() {
         
         Serial.println("Row 1 from gateway: ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[0][k]);
+          Serial.print((int)parkingBayData[0][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -144,7 +150,7 @@ void loop() {
         
         Serial.println("Row 2 from gateway ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[1][k]);
+          Serial.print((int)parkingBayData[1][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -157,7 +163,7 @@ void loop() {
         
         Serial.println("Row 3 from gateway ");
         for (int k = 0; k < NUM_PARKINGS; k++) {
-          Serial.print(parkingBayData[2][k]);
+          Serial.print((int)parkingBayData[2][k]);
           Serial.print(" ");
         }
         Serial.println("");
@@ -171,6 +177,7 @@ void loop() {
     }
     
     delay(0);
+    client.loop();
   }
 
   current_time = micros();
@@ -222,5 +229,42 @@ void loop() {
 
   Serial.flush();
 
+  client.disconnect();
+
   ESP.deepSleep(SLEEP_TIME - upload_duration);
+}
+
+void reconnect() 
+{
+  char clientID[10];
+
+  // Loop until reconnected.
+  while (!client.connected()) 
+  {
+    Serial.print("Attempting MQTT connection...");
+    // Generate ClientID
+    for (int i = 0; i < 8; i++) {
+        clientID[i] = random(51);
+    }
+    clientID[8]='\0';
+
+    // Connect to the MQTT broker
+    if (client.connect(clientID,mqttUserName,mqttPass)) 
+    {
+      Serial.print("Connected with Client ID:  ");
+      Serial.print(String(clientID));
+      Serial.print(", Username: ");
+      Serial.print(mqttUserName);
+      Serial.print(" , Passwword: ");
+      Serial.println(mqttPass);
+    } else 
+    {
+      Serial.print("failed, rc=");
+      // Print to know why the connection failed.
+      // See https://pubsubclient.knolleary.net/api.html#state for the failure code explanation.
+      Serial.print(client.state());
+      Serial.println(" try again in 5 seconds");
+      delay(1000);
+    }
+  }
 }
