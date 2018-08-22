@@ -52,9 +52,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Start the queue
         mRequestQueue.start();
 
-        String url = "https://api.thingspeak.com/channels/542645/fields/2.json?api_key=GX2QFYAFHEZ86AIO&results=1&timezone=Africa%2FJohannesburg";
+        String url = "https://api.thingspeak.com/channels/542645/fields/2&3&4.json?api_key=GX2QFYAFHEZ86AIO&results=1&timezone=Africa%2FJohannesburg";
 
-        final JSONObject[] data = new JSONObject[1];
         final char[][] parking_bays = new char[3][24];
         final Intent lot_loader = new Intent(this, ParkingLotsListActivity.class);
 
@@ -69,13 +68,18 @@ public class SplashScreenActivity extends AppCompatActivity {
                             JSONArray feeds = response.getJSONArray("feeds");
                             JSONObject latest_feed = feeds.getJSONObject(0);
                             parking_bays[0] = latest_feed.get("field2").toString().toCharArray();
+                            parking_bays[1] = latest_feed.get("field3").toString().toCharArray();
+                            parking_bays[2] = latest_feed.get("field4").toString().toCharArray();
+
                             Log.i("Feed ", feeds.toString());
                             Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                            Log.i("Parking Bays ", String.valueOf(parking_bays[0]));
-
-                            Log.i("sending ", String.valueOf(parking_bays[0]));
+                            Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
+                            Log.i("Parking Bays 2 ", String.valueOf(parking_bays[0]));
+                            Log.i("Parking Bays 3 ", String.valueOf(parking_bays[0]));
 
                             lot_loader.putExtra("row1", parking_bays[0]);
+                            lot_loader.putExtra("row2", parking_bays[1]);
+                            lot_loader.putExtra("row3", parking_bays[2]);
                             startActivity(lot_loader);
                             finish();
                         } catch (JSONException e) {

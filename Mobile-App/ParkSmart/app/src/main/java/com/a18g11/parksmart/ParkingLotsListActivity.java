@@ -22,12 +22,8 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
     public static final int LOT_3 = 2;
     public static final int LOT_4 = 3;
     public static final int LOT_5 = 4;
-
-    private int lot1_available = 0;
-    private int lot2_available = 0;
-    private int lot3_available = 0;
-    private int lot4_available = 0;
-    private int lot5_available = 0;
+    public static final int LOT_6 = 5;
+    public static final int LOT_7 = 6;
 
     private char[][] parking_bays = new char[3][24];
 
@@ -38,19 +34,43 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_lots_list);
 
+        int lot1_available = 0;
+        int lot2_available = 0;
+        int lot3_available = 0;
+        int lot4_available = 0;
+        int lot5_available = 0;
+        int lot6_available = 0;
+        int lot7_available = 0;
+
         parking_bays[0] = getIntent().getCharArrayExtra("row1");
+        parking_bays[1] = getIntent().getCharArrayExtra("row2");
+        parking_bays[2] = getIntent().getCharArrayExtra("row3");
+
+        Log.i("Received data 1", String.valueOf(parking_bays[0]));
+        Log.i("Received data 2", String.valueOf(parking_bays[1]));
+        Log.i("Received data 3", String.valueOf(parking_bays[2]));
+
         for (char parking : parking_bays[0]){
-            if (parking == '2') lot1_available++;
+            if (parking == '0') lot1_available++;
         }
-        Log.i("Received data ", String.valueOf(parking_bays[0]));
+
+        for (char parking : parking_bays[1]){
+            if (parking == '0') lot1_available++;
+        }
+
+        for (char parking : parking_bays[2]) {
+            if (parking == '0') lot1_available++;
+        }
 
         // data to populate the RecyclerView with
         ArrayList<String> parkingLots = new ArrayList<>();
-        parkingLots.add("Parking Lot 1");
-        parkingLots.add("Parking Lot 2");
-        parkingLots.add("Parking Lot 3");
-        parkingLots.add("Parking Lot 4");
-        parkingLots.add("Parking Lot 5");
+        parkingLots.add("Flower Hall");
+        parkingLots.add("Demo Parking");
+        parkingLots.add("Chamber of Mines");
+        parkingLots.add("Amic Deck");
+        parkingLots.add("FNB");
+        parkingLots.add("2nd Year East");
+        parkingLots.add("2nd Year West");
 
         ArrayList<Integer> availableParking = new ArrayList<>();
         availableParking.add(lot1_available);
@@ -58,6 +78,8 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         availableParking.add(lot3_available);
         availableParking.add(lot4_available);
         availableParking.add(lot5_available);
+        availableParking.add(lot6_available);
+        availableParking.add(lot7_available);
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.parking_lots);
@@ -78,6 +100,9 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         switch(position){
             case LOT_1:
                 Intent intent = new Intent(context, ParkingLot1.class);
+                intent.putExtra("row1", parking_bays[0]);
+                intent.putExtra("row2", parking_bays[1]);
+                intent.putExtra("row3", parking_bays[2]);
                 context.startActivity(intent);
                 break;
             case LOT_2:
@@ -87,6 +112,10 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
             case LOT_4:
                 break;
             case LOT_5:
+                break;
+            case LOT_6:
+                break;
+            case LOT_7:
                 break;
             default:
                 break;
