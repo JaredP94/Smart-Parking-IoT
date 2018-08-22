@@ -12,7 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/textView"
@@ -34,7 +35,8 @@
             android:layout_centerHorizontal="true"
             android:clickable="true"
             android:focusable="true"
-            android:padding="10sp" />
+            android:padding="10sp"
+            android:background="@drawable/gradient_bg"/>
     </LinearLayout>
 
 </RelativeLayout>

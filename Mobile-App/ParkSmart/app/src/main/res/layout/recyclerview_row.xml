@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="@drawable/custom_ripple">
 
     <TextView
         android:id="@+id/parking_lot"

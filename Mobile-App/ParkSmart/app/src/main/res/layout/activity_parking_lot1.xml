@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.a18g11.parksmart.ParkingLot1"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     android:id="@+id/relative_layout_parkings">
 
     <GridView
@@ -14,5 +14,6 @@
         android:layout_height="match_parent"
         android:numColumns="28"
         android:listSelector="@android:color/transparent"
-        android:stretchMode="columnWidth"/>
+        android:stretchMode="columnWidth"
+        android:gravity="center"/>
 </RelativeLayout>
