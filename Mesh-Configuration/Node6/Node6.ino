@@ -16,8 +16,8 @@ const uint16_t this_node = 051;
 const uint16_t row_admin = 01;
 
 // pin setup
-const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
-const int echo[NUM_SENSORS] = {6, 7, 8, 9};
+const int trigger[NUM_SENSORS] = {2, 4, 6, 8};
+const int echo[NUM_SENSORS] = {3, 5, 7, 9};
 
 float timeoutDist;
 float timeout;
@@ -60,7 +60,7 @@ void loop() {
       Serial.print("Data received: ");
       Serial.println(incomingData);
       if (header.from_node == row_admin) {    // If data comes from Node 4
-        signed char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
+        char isOccupied[NUM_SENSORS] = {0, 0, 0, 0};
         float distance[NUM_SENSORS] = {0, 0, 0, 0};
         
         digitalWrite(A5, HIGH);
