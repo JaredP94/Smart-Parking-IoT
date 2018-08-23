@@ -16,8 +16,8 @@ const uint16_t this_node = 011;
 const uint16_t row_admin = 01;
 
 // pin setup
-const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
-const int echo[NUM_SENSORS] = {6, 7, 8, 9};
+const int trigger[NUM_SENSORS] = {2, 4, 6, 8};
+const int echo[NUM_SENSORS] = {3, 5, 7, 9};
 
 float timeoutDist;
 float timeout;
@@ -101,7 +101,7 @@ float getDistance(const int trigPin, const int echoPin){
 
 int checkOccupied(float distance) {
   int occupancyStatus;
-  if (distance > 0 && distance <= 100){
+  if (distance > 0 && distance <= timeoutDist){
     occupancyStatus = 1;
   } else {
     occupancyStatus = 0;
