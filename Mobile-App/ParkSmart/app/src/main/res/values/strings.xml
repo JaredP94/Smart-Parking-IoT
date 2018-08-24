@@ -5,4 +5,5 @@
     <string name="parking_lot_list_title">Available Parking Lots</string>
     <string name="splash_internet_issue">Have you considered fibre?</string>
     <string name="parking_lot_loading">Finding you the best parking...</string>
+    <string name="entrance">Entrance</string>
 </resources>

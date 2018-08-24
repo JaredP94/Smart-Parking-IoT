@@ -31,7 +31,14 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.a18g11.parksmart.LoadingScreenActivity"
+            android:name="com.a18g11.parksmart.ParkingLot2"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.a18g11.parksmart.LoadingScreenActivity_FlowerHall"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.a18g11.parksmart.LoadingScreenActivity_DemoBay"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

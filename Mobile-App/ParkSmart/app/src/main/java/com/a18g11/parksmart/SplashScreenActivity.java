@@ -52,13 +52,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Start the queue
         mRequestQueue.start();
 
-        String url = "https://api.thingspeak.com/channels/542645/fields/2&3&4.json?api_key=GX2QFYAFHEZ86AIO&results=1&timezone=Africa%2FJohannesburg";
+        String url_lot1 = "https://api.thingspeak.com/channels/542645/fields/2&3&4.json?api_key=GX2QFYAFHEZ86AIO&results=1&timezone=Africa%2FJohannesburg";
+        String url_lot2 = "https://api.thingspeak.com/channels/563558/fields/2&3&4.json?api_key=SL1GOUY5H6OB9HWZ&results=1&timezone=Africa%2FJohannesburg";
 
         final char[][] parking_bays = new char[3][24];
         final Intent lot_loader = new Intent(this, ParkingLotsListActivity.class);
+        final Boolean[] lot1_dl = {false};
+        final Boolean[] lot2_dl = {false};
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest flower_hall_parking = new JsonObjectRequest
+                (Request.Method.GET, url_lot1, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
@@ -80,6 +83,44 @@ public class SplashScreenActivity extends AppCompatActivity {
                             lot_loader.putExtra("row1", parking_bays[0]);
                             lot_loader.putExtra("row2", parking_bays[1]);
                             lot_loader.putExtra("row3", parking_bays[2]);
+
+                            lot1_dl[0] = true;
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+
+                    }
+                });
+
+        JsonObjectRequest demo_bay_parking = new JsonObjectRequest
+                (Request.Method.GET, url_lot2, null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("API Resp ", response.toString());
+                        //data[0] = response.getJSONObject("channel");
+                        try {
+                            JSONArray feeds = response.getJSONArray("feeds");
+                            JSONObject latest_feed = feeds.getJSONObject(0);
+                            String demo_bay = latest_feed.get("field2").toString();
+
+                            Log.i("Feed ", feeds.toString());
+                            Log.i("Latest Feed ", latest_feed.get("field2").toString());
+                            Log.i("Demo Bay", String.valueOf(demo_bay));
+
+                            lot_loader.putExtra("demo_bay", demo_bay);
+
+                            lot2_dl[0] = true;
+
+                            while (lot1_dl[0] != true || lot2_dl[0] != true) { }
+
                             startActivity(lot_loader);
                             finish();
                         } catch (JSONException e) {
@@ -96,7 +137,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 });
 
         // Add the request to the RequestQueue.
-        mRequestQueue.add(jsonObjectRequest);
+        mRequestQueue.add(flower_hall_parking);
+        mRequestQueue.add(demo_bay_parking);
     }
 
 }
