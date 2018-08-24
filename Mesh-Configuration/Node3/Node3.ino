@@ -25,7 +25,7 @@ float timeout;
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
-  Serial.println(F("Sensor Node - Node2")); 
+  Serial.println(F("Sensor Node - Node3")); 
   
   SPI.begin();
   myRadio.begin();
