@@ -99,8 +99,7 @@ void setup() {
   }
   else {
     Serial.println("MQTT connect failed");
-    Serial.println("Will reset and try again...");
-    abort();
+    Serial.println("Will need to attempt reconnection");
   }
 } 
 
@@ -233,37 +232,35 @@ void loop() {
   ESP.deepSleep(SLEEP_TIME - upload_duration);
 }
 
-void reconnect() 
+void reconnect()
 {
-  char clientID[10];
-
+  char clientID[] = "00000000"; // null terminated 8 chars long
+  
   // Loop until reconnected.
-  while (!client.connected()) 
+  while (!client.connected())
   {
     Serial.print("Attempting MQTT connection...");
     // Generate ClientID
     for (int i = 0; i < 8; i++) {
-        clientID[i] = random(51);
+    clientID[i] = random(65, 91); // use only letters A to Z
     }
-    clientID[8]='\0';
-
+  
     // Connect to the MQTT broker
-    if (client.connect(clientID,mqttUserName,mqttPass)) 
-    {
-      Serial.print("Connected with Client ID:  ");
+    if (client.connect(clientID,mqttUserName,mqttPass)){
+      Serial.print("Connected with Client ID: ");
       Serial.print(String(clientID));
       Serial.print(", Username: ");
       Serial.print(mqttUserName);
       Serial.print(" , Passwword: ");
       Serial.println(mqttPass);
-    } else 
-    {
+    } 
+    else{
       Serial.print("failed, rc=");
       // Print to know why the connection failed.
       // See https://pubsubclient.knolleary.net/api.html#state for the failure code explanation.
       Serial.print(client.state());
-      Serial.println(" try again in 5 seconds");
-      delay(1000);
+      Serial.println(" try again in 0.5 seconds");
+      delay(500);
     }
   }
 }
