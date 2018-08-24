@@ -3,4 +3,6 @@
     <string name="title_activity_parking_lots_list">ParkingLotsListActivity</string>
     <string name="action_settings">Settings</string>
     <string name="parking_lot_list_title">Available Parking Lots</string>
+    <string name="splash_internet_issue">Have you considered fibre?</string>
+    <string name="parking_lot_loading">Trying to find you a parking...</string>
 </resources>

@@ -99,7 +99,7 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
 
         switch(position){
             case LOT_1:
-                Intent intent = new Intent(context, ParkingLot1.class);
+                Intent intent = new Intent(context, LoadingScreenActivity.class);
                 intent.putExtra("row1", parking_bays[0]);
                 intent.putExtra("row2", parking_bays[1]);
                 intent.putExtra("row3", parking_bays[2]);
