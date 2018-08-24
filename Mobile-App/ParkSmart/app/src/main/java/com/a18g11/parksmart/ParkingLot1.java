@@ -3,6 +3,7 @@ package com.a18g11.parksmart;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -127,48 +128,49 @@ public class ParkingLot1 extends AppCompatActivity {
 
         gridView = (GridView) findViewById(R.id.gridview_parkings);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
+                @NonNull
                 @Override
-                public View getView(int position, View convertView, ViewGroup parent){
+                public View getView(int position, View convertView, @NonNull ViewGroup parent){
                 // Cast the grid view current item as a text view
                 TextView tv_cell = (TextView) super.getView(position,convertView,parent);
 
                 if(position == 25){
                     tv_cell.setTextColor(Color.BLACK);
                     tv_cell.setTextSize(20);
-                    tv_cell.setText("Entrance");
+                    tv_cell.setText(R.string.entrance);
                 }
 
                 // Set the item background drawable
-                if(parkingNumbers[position].equals("3")) {
-                    tv_cell.setBackground(
-                            ContextCompat.getDrawable(
-                                    mContext, R.drawable.gridview_item_background_uncovered_parkings
-                            )
-                    );
-                }
-                else if(parkingNumbers[position].equals("1")) {
-                    tv_cell.setBackground(
-                            ContextCompat.getDrawable(
-                                    mContext, R.drawable.gridview_item_background_occupied_parking
-                            )
-                    );
-                }
-
-                else if(parkingNumbers[position].equals("0")) {
-                    tv_cell.setBackground(
-                            ContextCompat.getDrawable(
-                                    mContext, R.drawable.gridview_item_background_unoccupied_parking
-                            )
-                    );
-                }
-
-                else if(parkingNumbers[position].equals("2")) {
-                    tv_cell.setBackground(
-                            ContextCompat.getDrawable(
-                                    mContext, R.drawable.gridview_item_background_node_error
-                            )
-                    );
-                }
+                    switch (parkingNumbers[position]) {
+                        case "3":
+                            tv_cell.setBackground(
+                                    ContextCompat.getDrawable(
+                                            mContext, R.drawable.gridview_item_background_uncovered_parkings
+                                    )
+                            );
+                            break;
+                        case "1":
+                            tv_cell.setBackground(
+                                    ContextCompat.getDrawable(
+                                            mContext, R.drawable.gridview_item_background_occupied_parking
+                                    )
+                            );
+                            break;
+                        case "0":
+                            tv_cell.setBackground(
+                                    ContextCompat.getDrawable(
+                                            mContext, R.drawable.gridview_item_background_unoccupied_parking
+                                    )
+                            );
+                            break;
+                        case "2":
+                            tv_cell.setBackground(
+                                    ContextCompat.getDrawable(
+                                            mContext, R.drawable.gridview_item_background_node_error
+                                    )
+                            );
+                            break;
+                    }
 
                 // Put item item text in cell center
                 if(position == 25) {
@@ -251,47 +253,48 @@ public class ParkingLot1 extends AppCompatActivity {
                               }
 
                               ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
+                                  @NonNull
                                   @Override
-                                  public View getView(int position, View convertView, ViewGroup parent){
+                                  public View getView(int position, View convertView, @NonNull ViewGroup parent){
                                       // Cast the grid view current item as a text view
                                       TextView tv_cell = (TextView) super.getView(position,convertView,parent);
 
                                       if(position == 25){
                                           tv_cell.setTextColor(Color.BLACK);
                                           tv_cell.setTextSize(20);
-                                          tv_cell.setText("Entrance");
+                                          tv_cell.setText(R.string.entrance);
                                       }
 
                                       // Set the item background drawable
-                                      if(parkingNumbers[position].equals("3")) {
-                                          tv_cell.setBackground(
-                                                  ContextCompat.getDrawable(
-                                                          mContext, R.drawable.gridview_item_background_uncovered_parkings
-                                                  )
-                                          );
-                                      }
-                                      else if(parkingNumbers[position].equals("1")) {
-                                          tv_cell.setBackground(
-                                                  ContextCompat.getDrawable(
-                                                          mContext, R.drawable.gridview_item_background_occupied_parking
-                                                  )
-                                          );
-                                      }
-
-                                      else if(parkingNumbers[position].equals("0")) {
-                                          tv_cell.setBackground(
-                                                  ContextCompat.getDrawable(
-                                                          mContext, R.drawable.gridview_item_background_unoccupied_parking
-                                                  )
-                                          );
-                                      }
-
-                                      else if(parkingNumbers[position].equals("2")) {
-                                          tv_cell.setBackground(
-                                                  ContextCompat.getDrawable(
-                                                          mContext, R.drawable.gridview_item_background_node_error
-                                                  )
-                                          );
+                                      switch (parkingNumbers[position]) {
+                                          case "3":
+                                              tv_cell.setBackground(
+                                                      ContextCompat.getDrawable(
+                                                              mContext, R.drawable.gridview_item_background_uncovered_parkings
+                                                      )
+                                              );
+                                              break;
+                                          case "1":
+                                              tv_cell.setBackground(
+                                                      ContextCompat.getDrawable(
+                                                              mContext, R.drawable.gridview_item_background_occupied_parking
+                                                      )
+                                              );
+                                              break;
+                                          case "0":
+                                              tv_cell.setBackground(
+                                                      ContextCompat.getDrawable(
+                                                              mContext, R.drawable.gridview_item_background_unoccupied_parking
+                                                      )
+                                              );
+                                              break;
+                                          case "2":
+                                              tv_cell.setBackground(
+                                                      ContextCompat.getDrawable(
+                                                              mContext, R.drawable.gridview_item_background_node_error
+                                                      )
+                                              );
+                                              break;
                                       }
 
                                       // Put item item text in cell center
