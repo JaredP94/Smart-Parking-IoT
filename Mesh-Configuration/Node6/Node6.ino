@@ -44,9 +44,10 @@ void setup() {
   timeout = timeoutDist * 58;   //corresponding time inmicroSecond
 }
 void loop() {
-  for(int i = 0; i < 4; i++){
+  for(int i = 0; i < 3; i++){
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
+  LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
 
   returned_results = false;
 
@@ -78,8 +79,13 @@ void loop() {
 
         digitalWrite(A5, LOW);
         
-        RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
-        bool ok = network.write(header2, &isOccupied, sizeof(isOccupied)); // Send the data
+        bool ok = false;
+        while (!ok){
+          Serial.println(F("Attempt transmission to row admin"));
+          RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
+          ok = network.write(header2, &isOccupied, sizeof(isOccupied)); // Send the data
+          delay(10);
+        }
         Serial.print("Data transmitted to row admin: ");
         returned_results = true;
       }
