@@ -1,4 +1,14 @@
 gatewayNode/credentials.h
+PCB-Design/outputs/
 MCU-Programs/gatewayNode/credentials.h
 Mesh-Configuration/Node19-Transmitter/credentials.h
+<<<<<<< HEAD
 Mesh-Configuration/Node0-OpenDay/credentials.h
+=======
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.gz
+>>>>>>> c12cabed616ce55c83022d09480f525a07bf5da1
