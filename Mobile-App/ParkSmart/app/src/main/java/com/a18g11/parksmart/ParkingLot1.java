@@ -51,12 +51,13 @@ public class ParkingLot1 extends AppCompatActivity {
             296, 297, 324, 325, 298, 299, 326, 327, 300, 301, 328, 329, 302, 303, 330, 331, 304, 305, 332, 333, 306, 307, 334, 335
         };
     private ArrayList<Character> parkingOccupancy = new ArrayList<>();
-    static final int update_time = 30000;
+    static final int update_time = 5000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_lot1);
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");

@@ -8,8 +8,8 @@
     <color name="black">#000000</color>
     <color name="grey">#606060</color>
     <color name="lightGrey">#AAAAAA</color>
+    <color name="lightYellow">#FFFF55</color>
     <color name="yellow">#FFFF00</color>
-    <color name="yellowOutline">#A0A000</color>
     <color name="lightBlue">#00BBFF</color>
     <color name="lighterBlue">#AAFFFF</color>
     <color name="white">#FFFFFF</color>
@@ -17,4 +17,5 @@
     <color name="lightGreen">#00FF00</color>
     <color name="lightPurple">#FF77FF</color>
     <color name="purple">#FF00FF</color>
+    <color name="lightOrange">#FFAAAA</color>
 </resources>
