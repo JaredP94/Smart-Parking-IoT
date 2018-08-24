@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -56,6 +57,15 @@ public class ParkingLot1 extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parking_lot1);
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int resId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        int result = 0;
+        if (resId > 0) {
+            result = getResources().getDimensionPixelSize(resId);
+        }
+        final int width = dm.widthPixels;
+        final int height = dm.heightPixels - result;
 
         final RequestQueue mRequestQueue;
 
@@ -187,8 +197,8 @@ public class ParkingLot1 extends AppCompatActivity {
                     tv_cell.getLayoutParams().width = 350;
                 }
                 else{
-                    tv_cell.getLayoutParams().height = 71;
-                    tv_cell.getLayoutParams().width = 65;
+                    tv_cell.getLayoutParams().height = height/14;
+                    tv_cell.getLayoutParams().width = width/28;
                 }
 
                 // Return the modified item
@@ -226,6 +236,7 @@ public class ParkingLot1 extends AppCompatActivity {
                               Log.i("Parking Bays 3 ", String.valueOf(parking_bays[2]));
 
                               int track_index = 0;
+                              parkingOccupancy.clear();
 
                               for (int i = 0; i < 3; i++){
                                   for (int j = 0; j < 24; j++){
@@ -310,8 +321,8 @@ public class ParkingLot1 extends AppCompatActivity {
                                           tv_cell.getLayoutParams().width = 350;
                                       }
                                       else{
-                                          tv_cell.getLayoutParams().height = 71;
-                                          tv_cell.getLayoutParams().width = 65;
+                                          tv_cell.getLayoutParams().height = height/14;
+                                          tv_cell.getLayoutParams().width = width/28;
                                       }
 
                                       // Return the modified item
@@ -340,7 +351,7 @@ public class ParkingLot1 extends AppCompatActivity {
           }
       },
     //Set how long before to start calling the TimerTask (in milliseconds)
-    0,
+    update_time,
     //Set the amount of time between each execution (in milliseconds)
     update_time);
     }
