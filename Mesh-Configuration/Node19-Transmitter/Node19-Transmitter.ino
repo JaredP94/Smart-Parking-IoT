@@ -13,10 +13,10 @@
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password
 char mqttUserName[] = "GatewayNode";  // Can be any name.
-char mqttPass[] = "YYC34E16RCBXMVW4";  // Change this your MQTT API Key from Account > MyProfile.
-char writeAPIKey[] = "Y7F65B7CI35LQNJ3";    // Change to your channel Write API Key.
-long channelID = 542645;
-char* topic ="channels/542645/publish/Y7F65B7CI35LQNJ3";
+char mqttPass[] = MQTT_PASSWORD;  // Change this your MQTT API Key from Account > MyProfile.
+char writeAPIKey[] = WRITE_API_KEY;    // Change to your channel Write API Key.
+long channelID = CHANNEL_ID;
+char* topic = PUBLISH_TOPIC;
 char* server = "mqtt.thingspeak.com";
 
 WiFiClient wifiClient;
