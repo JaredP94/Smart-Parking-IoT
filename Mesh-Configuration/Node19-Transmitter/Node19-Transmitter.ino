@@ -1,5 +1,4 @@
 #include <ESP8266WiFi.h>
-#include <ESP8266Ping.h>
 #include <PubSubClient.h>
 #include <SPI.h>  
 #include "RF24.h" 
@@ -9,7 +8,7 @@
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
 #define NUM_ROWS 3
-#define SLEEP_TIME 16e6
+#define SLEEP_TIME 28e6
 
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password

@@ -66,9 +66,10 @@ void setup() {
 }
 
 void loop() {
-  for(int i = 0; i < 1; i++){
+  for(int i = 0; i < 3; i++){
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
+  LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
 
   status_received = false;
   returned_results = false;
