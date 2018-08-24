@@ -14,13 +14,15 @@ import java.util.List;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private List<String> mData;
+    private List<Integer> mAvailable;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<String> data) {
+    MyRecyclerViewAdapter(Context context, List<String> data, List<Integer> available) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.mAvailable = available;
     }
 
     // inflates the row layout from xml when needed
@@ -33,8 +35,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String parking_lot = mData.get(position);
+        String available_parking = mAvailable.get(position).toString();
+        holder.myTextView.setText(parking_lot);
+        holder.myTextView2.setText(available_parking);
     }
 
     // total number of rows
@@ -47,10 +51,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
+        TextView myTextView2;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.tvAnimalName);
+            myTextView = itemView.findViewById(R.id.parking_lot);
+            myTextView2 = itemView.findViewById(R.id.total_available);
             itemView.setOnClickListener(this);
         }
 

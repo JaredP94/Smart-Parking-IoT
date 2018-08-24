@@ -4,12 +4,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="@drawable/custom_ripple">
 
     <TextView
-        android:id="@+id/tvAnimalName"
+        android:id="@+id/parking_lot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
+
+    <TextView
+        android:id="@+id/total_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"/>
 
 </LinearLayout>

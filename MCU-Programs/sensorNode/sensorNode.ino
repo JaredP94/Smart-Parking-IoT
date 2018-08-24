@@ -8,8 +8,8 @@
 #define ROW_NUM 1
 
 // pin setup
-const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
-const int echo[NUM_SENSORS] = {6, 7, 8, 9};
+const int trigger[NUM_SENSORS] = {2, 4, 6, 8};
+const int echo[NUM_SENSORS] = {3, 5, 7, 9};
 
 const float wait = 10;
 float timeoutDist;
@@ -39,12 +39,13 @@ void setup() {
     dataTransmitted[j] = -1;
   }
   
-  timeoutDist = 100;            //100cm
+  timeoutDist = 200;            //100cm
   timeout = timeoutDist * 58;   //corresponding time inmicroSeconds
 
   Serial.println(F("Parking Data Transmit Test")); 
   myRadio.begin(); 
   myRadio.setChannel(108); 
+  myRadio.setDataRate(RF24_250KBPS);
   myRadio.setPALevel(RF24_PA_MIN); 
   myRadio.openWritingPipe( addresses[0]); 
   
@@ -96,7 +97,7 @@ float getDistance(const int trigPin, const int echoPin){
 
 int checkOccupied(float distance) {
   int occupancyStatus;
-  if (distance > 0 && distance <= 100){
+  if (distance > 0 && distance <= timeoutDist){
     occupancyStatus = 1;
   } else {
     occupancyStatus = 0;

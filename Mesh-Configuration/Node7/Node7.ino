@@ -12,8 +12,8 @@ RF24Network network(myRadio);
 bool returned_results;
 
 // Octal Mapping
-const uint16_t this_node = 051;
-const uint16_t row_admin = 01;
+const uint16_t this_node = 012;
+const uint16_t row_admin = 02;
 
 // pin setup
 const int trigger[NUM_SENSORS] = {2, 4, 6, 8};
@@ -25,7 +25,7 @@ float timeout;
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
-  Serial.println(F("Sensor Node - Node6")); 
+  Serial.println(F("Sensor Node - Node7")); 
   
   SPI.begin();
   myRadio.begin();
@@ -116,5 +116,6 @@ int checkOccupied(float distance) {
   }
   return occupancyStatus;
 }
+
 
 

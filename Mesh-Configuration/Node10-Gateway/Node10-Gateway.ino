@@ -32,8 +32,8 @@ bool row2 = false;
 bool row3 = false;
 
 // pin setup
-const int trigger[NUM_SENSORS] = {2, 3, 4, 5};
-const int echo[NUM_SENSORS] = {6, 7, 8, 9};
+const int trigger[NUM_SENSORS] = {2, 4, 6, 8};
+const int echo[NUM_SENSORS] = {3, 5, 7, 9};
 
 const float wait = 10;
 float timeoutDist;
@@ -72,9 +72,10 @@ void setup() {
 } 
 
 void loop() { 
-  for(int i = 0; i < 1; i++){
+  for(int i = 0; i < 3; i++){
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
+  LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
   LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
   
   status = 1;
@@ -216,7 +217,7 @@ float getDistance(const int trigPin, const int echoPin){
 
 int checkOccupied(float distance) {
   int occupancyStatus;
-  if (distance > 0 && distance <= 100){
+  if (distance > 0 && distance <= timeoutDist){
     occupancyStatus = 1;
   } else {
     occupancyStatus = 0;
