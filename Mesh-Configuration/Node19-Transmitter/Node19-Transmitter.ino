@@ -8,7 +8,7 @@
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
 #define NUM_ROWS 3
-#define SLEEP_TIME 30e6
+#define SLEEP_TIME 32e6
 
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password
@@ -70,7 +70,7 @@ void setup() {
   myRadio.begin(); 
   network.begin(90, this_node);
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
   total_wifi_on_time = micros();
   WiFi.begin(ssid, pass);
