@@ -1,6 +1,5 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#include <SPI.h>  
 #include "credentials.h"
 
 #define NUM_PARKINGS 1
@@ -27,9 +26,9 @@ unsigned long current_time;
 unsigned long upload_duration;
 
 // pin setup
-const int trigger[NUM_SENSORS] = {16};
-const int echo[NUM_SENSORS] = {5};
-const int mosfet_control = 0;
+const int TRIGGER = 16;
+const int ECHO = 5;
+const int MOSFET = 0;
 
 const float wait = 10;
 float timeoutDist;
@@ -38,6 +37,11 @@ float timeout;
 void setup() { 
   Serial.begin(9600); 
   Serial.println(F("MultiDemoNode - Node0")); 
+
+  timeoutDist = 200;
+  pinMode(TRIGGER, OUTPUT);
+  pinMode(ECHO, INPUT);
+  pinMode(MOSFET, OUTPUT);
 
   WiFi.begin(ssid, pass);
   Serial.print("MAC: ");
@@ -82,28 +86,33 @@ void loop() {
     reconnect();
   }
 
-  char isOccupied[NUM_SENSORS] = {0};
-  float distance[NUM_SENSORS] = {0};
+  char isOccupied = 0;
+  float distance = 0;
+  float duration;
   
-  digitalWrite(mosfet_control, HIGH);
+  digitalWrite(MOSFET, HIGH);
+  digitalWrite(TRIGGER, LOW);  
+  delayMicroseconds(2); 
   
-  for (int i = 0; i < NUM_SENSORS; i++) {
-    distance[i] =  getDistance(trigger[i], echo[i]);
-    isOccupied[i] = checkOccupied(distance[i]);
-    Serial.print("Distance: ");
-    Serial.print(distance[i]);
-    Serial.print(" cm \t");
-    Serial.print("status:");
-    Serial.println(isOccupied[i]);
-    delay(WAIT_TIME);
-  }
+  digitalWrite(TRIGGER, HIGH);
+  delayMicroseconds(10); 
+  
+  digitalWrite(TRIGGER, LOW);
+  duration = pulseIn(ECHO, HIGH);
+  distance = duration / 58;
 
-  digitalWrite(mosfet_control, LOW);
+  digitalWrite(MOSFET, LOW);
+
+  isOccupied = checkOccupied(distance);
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
 
   client.loop();   // Call the loop continuously to establish connection to the server.
 
   String occupied = "";
-  occupied += (int)isOccupied[0];
+  occupied += (int)isOccupied;
   
   String payload="field1=";
   payload+=WiFi.RSSI();
@@ -128,7 +137,7 @@ void loop() {
   client.loop();
   delay(5000);
   client.loop();
-  delay(5000);
+  delay(250);
   client.loop();
 
   Serial.flush();
@@ -165,18 +174,6 @@ void reconnect()
       delay(500);
     }
   }
-}
-
-float getDistance(const int trigPin, const int echoPin){
-  float distance, duration;
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2); 
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
-  duration = pulseIn(echoPin, HIGH, timeout);
-  distance = duration/58;
-  return distance;
 }
 
 int checkOccupied(float distance) {
