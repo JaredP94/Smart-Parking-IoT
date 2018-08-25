@@ -44,14 +44,14 @@ public class ParkingLot2 extends AppCompatActivity {
     private RelativeLayout mCLayout;
 
     GridView gridView;
-    private String[] parkingNumbers = new String[1];
+    private String[] parkingNumbers = {"3", "3", "3", "3", "3", "3", "4", "4", "4"};
     private ArrayList<String> parkingOccupancy = new ArrayList<>();
-    static final int update_time = 5000;
+    static final int update_time = 2000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parking_lot1);
+        setContentView(R.layout.activity_parking_lot2);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -85,8 +85,11 @@ public class ParkingLot2 extends AppCompatActivity {
         mCLayout = findViewById(R.id.relative_layout_parkings);
 
         String demo_bay = getIntent().getStringExtra("demo_bay");
-        parkingNumbers[0] = demo_bay;
-        parkingOccupancy.add(demo_bay);
+        parkingNumbers[4] = demo_bay;
+
+        for (String parking : parkingNumbers) {
+            parkingOccupancy.add(parking);
+        }
 
         gridView = findViewById(R.id.gridview_parkings);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
@@ -95,6 +98,7 @@ public class ParkingLot2 extends AppCompatActivity {
                 public View getView(int position, View convertView, @NonNull ViewGroup parent){
                 // Cast the grid view current item as a text view
                 TextView tv_cell = (TextView) super.getView(position,convertView,parent);
+                tv_cell.setText("");
 
                 // Set the item background drawable
                     switch (parkingNumbers[position]) {
@@ -146,8 +150,8 @@ public class ParkingLot2 extends AppCompatActivity {
                 //tv_cell.setHeight(300); // In pixels
 
                 // Another way to change grid view row height
-                tv_cell.getLayoutParams().height = height;
-                tv_cell.getLayoutParams().width = width;
+                tv_cell.getLayoutParams().height = height/3;
+                tv_cell.getLayoutParams().width = width/3;
 
                 // Return the modified item
                 return tv_cell;
@@ -179,8 +183,11 @@ public class ParkingLot2 extends AppCompatActivity {
                               Log.i("Demo Bay ", String.valueOf(demo_bay));
 
                               parkingOccupancy.clear();
-                              parkingNumbers[0] = demo_bay;
-                              parkingOccupancy.add(demo_bay);
+                              parkingNumbers[4] = demo_bay;
+
+                              for (String parking : parkingNumbers) {
+                                  parkingOccupancy.add(parking);
+                              }
 
                               ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
                                   @NonNull
@@ -188,6 +195,7 @@ public class ParkingLot2 extends AppCompatActivity {
                                   public View getView(int position, View convertView, @NonNull ViewGroup parent){
                                       // Cast the grid view current item as a text view
                                       TextView tv_cell = (TextView) super.getView(position,convertView,parent);
+                                      tv_cell.setText("");
 
                                       // Set the item background drawable
                                       switch (parkingNumbers[position]) {
@@ -239,8 +247,8 @@ public class ParkingLot2 extends AppCompatActivity {
                                       //tv_cell.setHeight(300); // In pixels
 
                                       // Another way to change grid view row height
-                                      tv_cell.getLayoutParams().height = height;
-                                      tv_cell.getLayoutParams().width = width;
+                                      tv_cell.getLayoutParams().height = height/3;
+                                      tv_cell.getLayoutParams().width = width/3;
 
                                       // Return the modified item
                                       return tv_cell;
