@@ -11,7 +11,7 @@ import com.group18g11.parksmart.R;
 public class LoadingScreenActivity_DemoBay extends Activity {
 
     //Introduce an delay
-    private final int WAIT_TIME = 1000;
+    private final int WAIT_TIME = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
