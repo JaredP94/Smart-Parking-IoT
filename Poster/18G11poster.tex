@@ -96,25 +96,69 @@ linewidth=1.5pt % Width of the border lines around content boxes
 
 }
 
-\headerbox{System Design}{name=sysdesign1,column=0,below=objectives,bottomaligned=bottom}{ 
+\headerbox{System Design}{name=sysdesign1,column=0,below=objectives}{%,bottomaligned=bottom}{ 
+
+	\begin{center}
+		\includegraphics[width=0.9\columnwidth]{Picture2}
+		\captionof{figure}{Figure caption}
+	\end{center}
 	\textbf{Features}\\
 	\textbf{Hardware}\\
 	\textbf{Software}\\ (mesh network flow diagram)
 }
 
-\headerbox{System Design (cont.)}{name=sysdesign2,column=1,span=2,row=0,span=2}{ 
+\headerbox{System Design (cont.)}{name=sysdesign2,column=1,span=2,row=0,bottomaligned=bottom}{ 
 	\begin{multicols}{2}
+		
+		\begin{center}
+			\includegraphics[width=0.9\columnwidth]{mesh-cropped}
+			\captionof{figure}{Figure caption}
+		\end{center}
+	
+		
+		\begin{center}
+			\includegraphics[width=0.9\columnwidth]{lifetime_vs_consumption}
+			\captionof{figure}{Figure caption}
+		\end{center}
+		
+		\begin{center}
+			\includegraphics[width=0.9\columnwidth]{flowDiagramBIG-cropped}
+			\captionof{figure}{Figure caption}
+		\end{center}
+	
+	
+		
 	\end{multicols}
 }
 
 
-\headerbox{Deployment \& Evaluation}{name=deployandeval,column=1,row=1,span=2,below=sysdesign2}{
-	\begin{multicols}{2}
-	\end{multicols}
-}
+\headerbox{Deployment \& Evaluation}{name=deployandeval,column=3,row=0,span=1}{
+	%\begin{multicols}{2}
+		
+		\begin{center}
+			\includegraphics[width=0.6\columnwidth]{app_screenshot}
+			\captionof{figure}{Figure caption}
+		\end{center}
+	%\end{multicols}
+	
+	\begin{center}
+		\resizebox{1\textwidth}{!}{
+		\begin{tabular}{c c c}
+			\toprule
+			\textbf{Num Parkings} & \textbf{Payload Size (B)} & \textbf{Monthly Usage (MB)}\\
+			\midrule
+			1 & 60 & 0.08 \\
+			72 & 262 & 3.77 \\
+			192 & 582 & 8.38 \\
+			\bottomrule
+		\end{tabular}
+	}
+		\captionof{table}{Table caption}
+	\end{center}}
 
 
-\headerbox{Future Work}{name=futurework,column=3,row=0,span=1}{
+
+\headerbox{Future Work}{name=futurework,column=3,row=1,span=1, below=deployandeval}{
 		\begin{itemize}[leftmargin=13pt]\compresslist
 		\item An alternative row administrator node row is established if any of the current row administrators go down, allowing negative effects to be dramatically decreased.
 		\item Allow sensors to take multiple consecutive readings, use this information to distinguish between the type of object being sensed. This will avoid false positives from pedestrians or other objects crossing the sensor path temporarily.
@@ -122,7 +166,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 	\end{itemize}
 }
 
-\headerbox{Conclusions}{name=conclusion,column=3,span=1,row=2,below=futurework}{
+\headerbox{Conclusions}{name=conclusion,column=3,span=1,row=3,below=futurework}{
 	A prototype IoT-based smart parking system has been designed which comminucates parking availability to  
 }
 
