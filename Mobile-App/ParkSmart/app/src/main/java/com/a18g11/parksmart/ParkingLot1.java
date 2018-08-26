@@ -51,6 +51,9 @@ public class ParkingLot1 extends AppCompatActivity {
             212, 213, 240, 241, 214, 215, 242, 243, 216, 217, 244, 245, 218, 219, 246, 247, 220, 221, 248, 249, 222, 223, 250, 251,
             296, 297, 324, 325, 298, 299, 326, 327, 300, 301, 328, 329, 302, 303, 330, 331, 304, 305, 332, 333, 306, 307, 334, 335
         };
+    private Integer[] uncovered_parkings = {
+            52, 53, 54, 55, 112, 140, 141, 196, 197, 198, 199, 200, 224, 225, 226, 227, 228, 229, 280, 281, 282, 283, 284, 285, 286, 308, 309, 310, 311, 312, 313, 314, 315, 364, 365, 366, 367, 368, 369, 370, 371, 371
+    };
     private ArrayList<Character> parkingOccupancy = new ArrayList<>();
     static final int update_time = 5000;
 
@@ -126,6 +129,10 @@ public class ParkingLot1 extends AppCompatActivity {
             track_index++;
         }
 
+        for (int index : uncovered_parkings){
+            parkingNumbers[index] = "4";
+        }
+
         gridView = (GridView) findViewById(R.id.gridview_parkings);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
                 @NonNull
@@ -197,7 +204,7 @@ public class ParkingLot1 extends AppCompatActivity {
                 // Another way to change grid view row height
                 if(position == 25) {
                     tv_cell.getLayoutParams().height = 100;
-                    tv_cell.getLayoutParams().width = 350;
+                    tv_cell.getLayoutParams().width = 400;
                 }
                 else{
                     tv_cell.getLayoutParams().height = height/14;
@@ -250,6 +257,10 @@ public class ParkingLot1 extends AppCompatActivity {
                               for(int index : trackedParkings){
                                   parkingNumbers[index] = parkingOccupancy.get(track_index).toString();
                                   track_index++;
+                              }
+
+                              for (int index : uncovered_parkings){
+                                  parkingNumbers[index] = "4";
                               }
 
                               ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
@@ -322,7 +333,7 @@ public class ParkingLot1 extends AppCompatActivity {
                                       // Another way to change grid view row height
                                       if(position == 25) {
                                           tv_cell.getLayoutParams().height = 100;
-                                          tv_cell.getLayoutParams().width = 350;
+                                          tv_cell.getLayoutParams().width = 400;
                                       }
                                       else{
                                           tv_cell.getLayoutParams().height = height/14;
