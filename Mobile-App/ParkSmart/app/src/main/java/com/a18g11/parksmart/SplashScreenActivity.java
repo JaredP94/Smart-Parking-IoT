@@ -69,7 +69,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("API Resp ", response.toString());
+                        //Log.i("API Resp ", response.toString());
                         //data[0] = response.getJSONObject("channel");
                         try {
                             JSONArray feeds = response.getJSONArray("feeds");
@@ -78,11 +78,11 @@ public class SplashScreenActivity extends AppCompatActivity {
                             parking_bays[1] = latest_feed.get("field3").toString().toCharArray();
                             parking_bays[2] = latest_feed.get("field4").toString().toCharArray();
 
-                            Log.i("Feed ", feeds.toString());
-                            Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                            Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
-                            Log.i("Parking Bays 2 ", String.valueOf(parking_bays[0]));
-                            Log.i("Parking Bays 3 ", String.valueOf(parking_bays[0]));
+                            //Log.i("Feed ", feeds.toString());
+                            //Log.i("Latest Feed ", latest_feed.get("field2").toString());
+                            //Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
+                            //Log.i("Parking Bays 2 ", String.valueOf(parking_bays[0]));
+                            //Log.i("Parking Bays 3 ", String.valueOf(parking_bays[0]));
 
                             lot_loader.putExtra("row1", parking_bays[0]);
                             lot_loader.putExtra("row2", parking_bays[1]);
@@ -123,16 +123,16 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("API Resp ", response.toString());
+                        //Log.i("API Resp ", response.toString());
                         //data[0] = response.getJSONObject("channel");
                         try {
                             JSONArray feeds = response.getJSONArray("feeds");
                             JSONObject latest_feed = feeds.getJSONObject(0);
                             String demo_bay = latest_feed.get("field2").toString();
 
-                            Log.i("Feed ", feeds.toString());
-                            Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                            Log.i("Demo Bay", String.valueOf(demo_bay));
+                            //Log.i("Feed ", feeds.toString());
+                            //Log.i("Latest Feed ", latest_feed.get("field2").toString());
+                            //Log.i("Demo Bay", String.valueOf(demo_bay));
 
                             lot_loader.putExtra("demo_bay", demo_bay);
 

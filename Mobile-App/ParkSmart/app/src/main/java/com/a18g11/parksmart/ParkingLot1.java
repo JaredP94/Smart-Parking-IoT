@@ -224,13 +224,13 @@ public class ParkingLot1 extends AppCompatActivity {
         t.scheduleAtFixedRate(new TimerTask() {
           @Override
           public void run() {
-              Log.i("Timer", "Updated");
+              //Log.i("Timer", "Updated");
               JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                   (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                       @Override
                       public void onResponse(JSONObject response) {
-                          Log.i("API Resp ", response.toString());
+                          //Log.i("API Resp ", response.toString());
                           //data[0] = response.getJSONObject("channel");
                           try {
                               JSONArray feeds = response.getJSONArray("feeds");
@@ -239,11 +239,11 @@ public class ParkingLot1 extends AppCompatActivity {
                               parking_bays[1] = latest_feed.get("field3").toString().toCharArray();
                               parking_bays[2] = latest_feed.get("field4").toString().toCharArray();
 
-                              Log.i("Feed ", feeds.toString());
-                              Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                              Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
-                              Log.i("Parking Bays 2 ", String.valueOf(parking_bays[1]));
-                              Log.i("Parking Bays 3 ", String.valueOf(parking_bays[2]));
+                              //Log.i("Feed ", feeds.toString());
+                              //Log.i("Latest Feed ", latest_feed.get("field2").toString());
+                              //Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
+                              //Log.i("Parking Bays 2 ", String.valueOf(parking_bays[1]));
+                              //Log.i("Parking Bays 3 ", String.valueOf(parking_bays[2]));
 
                               int track_index = 0;
                               parkingOccupancy.clear();
