@@ -13,7 +13,7 @@ public class LoadingScreenActivity_FlowerHall extends Activity {
     private char[][] parking_bays = new char[3][24];
 
     //Introduce an delay
-    private final int WAIT_TIME = 1000;
+    private final int WAIT_TIME = 1500;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
