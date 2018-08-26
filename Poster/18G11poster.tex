@@ -102,10 +102,11 @@ linewidth=1.5pt % Width of the border lines around content boxes
 		\captionof{figure}{A high-level depiction of the implemented system}
 		\raggedright
 	\end{center}
+\vspace{-1mm}
 
 	\textbf{System Features}
 		\begin{itemize}[leftmargin=13pt]\compresslist
-			\item Available parking spaces are detected
+			\item The availability of 72 parking spaces is detected
 			\item Empty spaces are communicated to users through a user-friendly mobile application
 			\item Parking availability status is updated every 30~seconds
 			\item Operates during active parking hours (7~am - 3~pm)
@@ -125,7 +126,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 }
 
 \headerbox{System Design (cont.)}
-{name=sysdesign2,column=1,span=2,row=0}{%,bottomaligned=bottom}{ 
+{name=sysdesign2,column=1,span=2,row=0}{ 
 	\begin{multicols}{2}
 		
 		\textbf{Software Setup}
@@ -134,6 +135,11 @@ linewidth=1.5pt % Width of the border lines around content boxes
 				%\item  A scalable RF communication mesh network is designed 
 				\item To maintain a low cost node design, system complexity increases with increasing number of parkings
 				\item Sensor data is aggregated and uploaded according to the node hierarchy depicted in Figure~2
+				\begin{center}
+					\includegraphics[width=0.85\columnwidth]{mesh-cropped}
+					\captionof{figure}{Visulisation of the flow of data, during retrieval, from Sensor Nodes to Sink Node}
+				\end{center}
+			\vspace{0.5mm}
 				\item Data upload is optimised by utilising the ThingSpeak MQTT broker
 					\begin{itemize}[leftmargin=13pt]\compresslist
 						\item Very fast connection and upload time
@@ -145,44 +151,39 @@ linewidth=1.5pt % Width of the border lines around content boxes
 				\item The application automatically updates, ensuring up-to-date parking lot data is always displayed 
 			\end{itemize}
 		
-		\begin{center}
-			\includegraphics[width=0.9\columnwidth]{mesh-cropped}
-			\captionof{figure}{Visulisation of the flow of data, during retrieval, from Sensor Nodes to Sink Node}
-		\end{center}
+		
 	
 		\textbf{Smart System Operation}
 			\begin{itemize}[leftmargin=13pt]\compresslist
-				\item A full cycle incurs an average operation time of approximately 1.6~s (refer to Figure 3)
-				\item Mobile application highlights non-transmitting nodes
+				\item A full cycle (see Figure~3) incurs an average operation time of approximately 1.6~seconds
+				\item The mobile application highlights non-transmitting nodes, indicating system fault to network managers
 			\end{itemize}
 		
-		\vspace{0.5pt}
+		\vspace{1mm}
 		
 		\begin{center}
-			\includegraphics[width=0.9\columnwidth]{flowDiagramBIG-cropped}
-			\captionof{figure}{Detailed system interactions between role specific nodes}
+			\includegraphics[width=0.9\columnwidth]{flowFinalPoster-cropped}
+			\captionof{figure}{Detailed system interactions between role specific nodes per cycle during operational hours}
 		\end{center}
 	
-	
-		
 	\end{multicols}
 }
 
-\headerbox{Deployment}{name=deployment,column=1,row=1,span=2, below=sysdesign2,bottomaligned=references}{
+\headerbox{Deployment}{name=deployment,column=1,row=1,span=2, below=sysdesign2,bottomaligned=bottom}{
 	\begin{multicols}{2}
 		
 		\textbf{Construction Specifics} 
 		\begin{itemize}[leftmargin=13pt]\compresslist
-			\item PCB design for optimized production
-			\item 3D printed sensor holders allow customised \\angles per node
+			\item PCB design for optimized system production
+			\item 3D printed sensor holders allow customised sensor placement within each node
 			\item Waterproof encasing and tamper-proof lid
-			\item Robust stand with runoff resistance
+			\item Robust stand, prevents damage caused by rain runoff
 		\end{itemize}
 	
 	\vspace{1em}
 	
 		\begin{center}
-			\includegraphics[width=0.67\columnwidth]{app_screenshot2}
+			\includegraphics[width=0.9\columnwidth]{app_screenshot3}
 			\captionof{figure}{Screenshot of the developed mobile application }
 			\raggedright
 		\end{center}
@@ -196,45 +197,43 @@ linewidth=1.5pt % Width of the border lines around content boxes
 	
 	\textbf{System performance}
 		\begin{itemize}[leftmargin=13pt]\compresslist
-			\item Estimated system lifetime on a single charge cycle is 276~days
-			\item This lifetime is limited by the highest consumption node (refer to Figure~5)
-			\item Mobile app data consumption is minimal with a refresh time of 5~s
-			\item unupdated requests incur a cost of only 4~kB per request
-			\item Data upload cost of implemented system is approximately 3.7~MB per month
+			\item Estimated lifetime on a single charge cycle is 276~days, limited by the highest consumption node
+			\begin{center}
+				\includegraphics[width=0.8\columnwidth]{consumption}
+				\captionof{figure}{Energy performance of the designed system}
+			\end{center}
+			\item Data consumption of the implemented smart parking system is approximately 3.7~MB per month, and scales non-linearly with parking lot size
+			\begin{center}
+				\resizebox{0.9\textwidth}{!}{
+					\begin{tabular}{c c c}
+						\toprule
+						\textbf{Number of Parkings} & \textbf{Payload Size (B)} & \textbf{Monthly Usage (MB)}\\
+						\midrule
+						1 & 60 & 0.08 \\
+						72 & 262 & 3.77 \\
+						192 & 582 & 8.38 \\
+						\bottomrule
+					\end{tabular}
+				}
+			\captionof{table}{Effect of parking lot size on WSN data consumption}
+			\end{center}
+			\item Mobile application data consumption is minimal with a refresh interval of 5~seconds
+			\item Requests for data which has not been updated incur a cost of only 4~kB per request
+			\item At the current scale, the calculated price per node is  R~273.52, with a cost-per-parking of R~68.38
 		\end{itemize}
-	
-	\begin{center}
-		\includegraphics[width=0.9\columnwidth]{consumption}
-		\captionof{figure}{Graph depicting energy performance of the system}
-	\end{center}
-	
-	\begin{center}
-		\resizebox{0.9\textwidth}{!}{
-		\begin{tabular}{c c c}
-			\toprule
-			\textbf{Number of Parkings} & \textbf{Payload Size (B)} & \textbf{Monthly Usage (MB)}\\
-			\midrule
-			1 & 60 & 0.08 \\
-			72 & 262 & 3.77 \\
-			192 & 582 & 8.38 \\
-			\bottomrule
-		\end{tabular}
 	}
-		\captionof{table}{Data consumption of system scaling}
-	\end{center}}
-
-
+	
 
 \headerbox{Future Work}{name=futurework,column=3,row=1,span=1, below=deployandeval}{
 		\begin{itemize}[leftmargin=13pt]\compresslist
-		\item An alternative row administrator node row is established if any of the current row administrators go down, allowing negative effects to be dramatically decreased.
-		\item Allow sensors to take multiple consecutive readings, use this information to distinguish between the type of object being sensed. This will avoid false positives from pedestrians or other objects crossing the sensor path temporarily.
-		\item Small application updates, including the option to manually refresh the parking lot page 
+		\item Sensors take multiple consecutive readings and use this information to distinguish between the type of object being sensed. This will avoid false positives from pedestrians or other objects crossing the sensor path temporarily.
+		\item Mobile application updates, including the option to manually refresh the parking lot information.
 	\end{itemize}
 }
 
-\headerbox{Conclusions}{name=conclusion,column=3,span=1,row=3,below=futurework}{
-	A prototype IoT-based smart parking system has been designed which comminucates parking availability to  
+\headerbox{Conclusions}{name=conclusion,column=3,span=1,row=3,below=futurework,above=bottom}{
+	\vspace{1.5mm}
+	A scalable IoT-based smart parking system has been designed which communicates parking bay availability to drivers via a mobile application. The expected lifetime of the system is 276 days and incurs a monthly data cost of only 3.77~MB. Implementing the system for 72 parking bays results in a cost-per-parking of R~68.38. The ParkSmart system meets all of its objectives, making the project a success.
 }
 
 %\headerbox{References}{name=references,column=3,span=1,above=bottom}{
