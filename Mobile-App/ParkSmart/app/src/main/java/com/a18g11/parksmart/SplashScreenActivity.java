@@ -39,7 +39,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        RequestQueue mRequestQueue;
+        final RequestQueue mRequestQueue;
 
         // Instantiate the cache
         Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
@@ -61,7 +61,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         final Boolean[] lot1_dl = {false};
         final Boolean[] lot2_dl = {false};
 
-        JsonObjectRequest flower_hall_parking = new JsonObjectRequest
+        final JsonObjectRequest flower_hall_parking = new JsonObjectRequest
                 (Request.Method.GET, url_lot1, null, new Response.Listener<JSONObject>() {
 
                     @Override
@@ -86,6 +86,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                             lot_loader.putExtra("row3", parking_bays[2]);
 
                             lot1_dl[0] = true;
+
+                            startActivity(lot_loader);
+                            finish();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -120,10 +123,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                             lot2_dl[0] = true;
 
-                            while (lot1_dl[0] != true || lot2_dl[0] != true) { }
+                            mRequestQueue.add(flower_hall_parking);
 
-                            startActivity(lot_loader);
-                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -138,7 +139,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 });
 
         // Add the request to the RequestQueue.
-        mRequestQueue.add(flower_hall_parking);
         mRequestQueue.add(demo_bay_parking);
     }
 
