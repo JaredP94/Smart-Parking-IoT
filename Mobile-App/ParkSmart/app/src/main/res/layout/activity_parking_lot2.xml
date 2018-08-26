@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.a18g11.parksmart.ParkingLot2"
-    android:background="@color/white"
+    android:background="@color/veryLightGrey"
     android:id="@+id/relative_layout_demo_parkings">
 
     <GridView
