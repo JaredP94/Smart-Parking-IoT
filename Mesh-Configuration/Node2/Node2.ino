@@ -35,7 +35,7 @@ void setup() {
   myRadio.begin();
   network.begin(90, this_node); //(channel, node address)
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
   for (int i = 0; i < NUM_SENSORS; i++) {
     pinMode(trigger[i], OUTPUT);
