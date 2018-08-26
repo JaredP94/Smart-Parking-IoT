@@ -96,34 +96,68 @@ linewidth=1.5pt % Width of the border lines around content boxes
 
 }
 
-\headerbox{System Design}{name=sysdesign1,column=0,below=objectives}{%,bottomaligned=bottom}{ 
+\headerbox{System Design}{name=sysdesign1,column=0,below=objectives,bottomaligned=bottom}{ 
 
 	\begin{center}
 		\includegraphics[width=0.9\columnwidth]{Picture2}
-		\captionof{figure}{Figure caption}
+		\captionof{figure}{Overall depiction of the implemented system}
 	\end{center}
-	\textbf{Features}\\
-	\textbf{Hardware}\\
-	\textbf{Software}\\ (mesh network flow diagram)
+
+	\textbf{System Features}
+		\begin{itemize}[leftmargin=13pt]\compresslist
+			\item Parking space availability detection
+			\item Empty spaces are communicated to users through a user-friendly mobile application
+			\item System updated approximately every 30~s
+			\item Functions during active parking hours (7~am - 3~pm)
+			\item Fail-safes in place in case of node failures
+		\end{itemize}
+	
+	\textbf{Hardware Setup}
+		\begin{itemize}[leftmargin=13pt]\compresslist
+			\item Ultrasonic distance measurement sensor
+			\item Arduino Nano microprocessor
+			\item ESP8266 based Wi-Fi module
+			\item 2.4~GHz radio module
+			\item 2*AA batteries + 5~V boost converter
+		\end{itemize}
+	
+	
 }
 
-\headerbox{System Design (cont.)}{name=sysdesign2,column=1,span=2,row=0,bottomaligned=bottom}{ 
+\headerbox{System Design (cont.)}{name=sysdesign2,column=1,span=2,row=0}{%,bottomaligned=bottom}{ 
 	\begin{multicols}{2}
 		
-		\begin{center}
-			\includegraphics[width=0.9\columnwidth]{mesh-cropped}
-			\captionof{figure}{Figure caption}
-		\end{center}
-	
+		\textbf{Software Setup}
+			\begin{itemize}[leftmargin=13pt]\compresslist
+				\item Scalable RF communication mesh is designed \\(refer to Figure 2)
+				\item System complexity increases with increasing number of parkings if low cost node design is maintained
+				\item Node data is aggregated and uploaded through a single Wi-Fi module (Sink Node)
+				\item Optimised data upload through the ThingSpeak MQTT broker
+					\begin{itemize}[leftmargin=13pt]\compresslist
+						\item Minimal connection and upload time
+						\item Small payload size
+					\end{itemize}
+				\item User-friendly mobile application built for Android
+				\item Parking lot data is retrieved by the application through the provided ThingSpeak API
+				\item Mobile application automatically refreshes with updated parking bay availability data
+			\end{itemize}
 		
 		\begin{center}
-			\includegraphics[width=0.9\columnwidth]{lifetime_vs_consumption}
-			\captionof{figure}{Figure caption}
+			\includegraphics[width=0.8\columnwidth]{mesh-cropped}
+			\captionof{figure}{Data retrieval of parking avalability from sensor nodes to sink node}
 		\end{center}
+	
+		\textbf{Smart System Operation}
+			\begin{itemize}[leftmargin=13pt]\compresslist
+				\item Figure~3 demonstrates the interaction between role-specific nodes
+				\item A full cycle incurrs an average operation time of approximately 1.6~s
+			\end{itemize}
+		
+		\vspace{0.5pt}
 		
 		\begin{center}
 			\includegraphics[width=0.9\columnwidth]{flowDiagramBIG-cropped}
-			\captionof{figure}{Figure caption}
+			\captionof{figure}{Detailed system interactions between role specific nodes}
 		\end{center}
 	
 	
@@ -131,15 +165,44 @@ linewidth=1.5pt % Width of the border lines around content boxes
 	\end{multicols}
 }
 
-
-\headerbox{Deployment \& Evaluation}{name=deployandeval,column=3,row=0,span=1}{
-	%\begin{multicols}{2}
+\headerbox{Deployment}{name=deployment,column=1,row=1,span=2, below=sysdesign2,bottomaligned=references}{
+	\begin{multicols}{2}
 		
+		\textbf{Construction Specifics} 
+		\begin{itemize}[leftmargin=13pt]\compresslist
+			\item PCB design for optimized production
+			\item 3D printed sensor holders allow customised \\angles per node
+			\item Waterproof encasing and tamper-proof lid
+			\item Robust stand with runoff resistance
+		\end{itemize}
+	
+	\vspace{1em}
+	
 		\begin{center}
-			\includegraphics[width=0.6\columnwidth]{app_screenshot}
-			\captionof{figure}{Figure caption}
+			\includegraphics[width=0.5\columnwidth]{app_screenshot}
+			\captionof{figure}{Screenshot of the developed mobile application }
 		\end{center}
-	%\end{multicols}
+	
+	\end{multicols}
+	
+}
+
+
+\headerbox{Evaluation}{name=deployandeval,column=3,row=0,span=1}{
+	
+	\textbf{System performance}
+		\begin{itemize}[leftmargin=13pt]\compresslist
+			\item Estimated system lifetime on a single charge cycle is 276~days
+			\item This lifetime is limited by the highest consumption node (refer to Figure~5)
+			\item Mobile app data consumption is minimal with a refresh time of 5~s
+			\item unupdated requests incur a cost of only 4~kB per request
+			\item Data upload cost of implemented system is approximately 3.7~MB per month
+		\end{itemize}
+	
+	\begin{center}
+		\includegraphics[width=0.7\columnwidth]{lifetime_vs_consumption3}
+		\captionof{figure}{Graph depicting energy performance of the system}
+	\end{center}
 	
 	\begin{center}
 		\resizebox{1\textwidth}{!}{
@@ -153,7 +216,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 			\bottomrule
 		\end{tabular}
 	}
-		\captionof{table}{Table caption}
+		\captionof{table}{Data consumption of system scaling}
 	\end{center}}
 
 
@@ -170,9 +233,9 @@ linewidth=1.5pt % Width of the border lines around content boxes
 	A prototype IoT-based smart parking system has been designed which comminucates parking availability to  
 }
 
-\headerbox{References}{name=references,column=3,span=1,above=bottom}{
-	
-}
+%\headerbox{References}{name=references,column=3,span=1,above=bottom}{
+%	
+%}
 
 \end{poster}
 
