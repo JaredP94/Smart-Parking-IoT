@@ -166,21 +166,21 @@ public class ParkingLot2 extends AppCompatActivity {
         t.scheduleAtFixedRate(new TimerTask() {
           @Override
           public void run() {
-              Log.i("Timer", "Updated");
+              //Log.i("Timer", "Updated");
               JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                   (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                       @Override
                       public void onResponse(JSONObject response) {
-                          Log.i("API Resp ", response.toString());
+                          //Log.i("API Resp ", response.toString());
                           try {
                               JSONArray feeds = response.getJSONArray("feeds");
                               JSONObject latest_feed = feeds.getJSONObject(0);
                               String demo_bay = latest_feed.get("field2").toString();
 
-                              Log.i("Feed ", feeds.toString());
-                              Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                              Log.i("Demo Bay ", String.valueOf(demo_bay));
+                              //Log.i("Feed ", feeds.toString());
+                              //Log.i("Latest Feed ", latest_feed.get("field2").toString());
+                              //Log.i("Demo Bay ", String.valueOf(demo_bay));
 
                               parkingOccupancy.clear();
                               parkingNumbers[4] = demo_bay;

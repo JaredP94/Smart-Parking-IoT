@@ -46,9 +46,9 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         parking_bays[1] = getIntent().getCharArrayExtra("row2");
         parking_bays[2] = getIntent().getCharArrayExtra("row3");
 
-        Log.i("Received data 1", String.valueOf(parking_bays[0]));
-        Log.i("Received data 2", String.valueOf(parking_bays[1]));
-        Log.i("Received data 3", String.valueOf(parking_bays[2]));
+        //Log.i("Received data 1", String.valueOf(parking_bays[0]));
+        //Log.i("Received data 2", String.valueOf(parking_bays[1]));
+        //Log.i("Received data 3", String.valueOf(parking_bays[2]));
 
         for (char parking : parking_bays[0]){
             if (parking == '0') lot1_available++;
@@ -63,7 +63,7 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         }
 
         demo_bay = getIntent().getStringExtra("demo_bay");
-        Log.i("Demo bay result", String.valueOf(parking_bays[0]));
+        //Log.i("Demo bay result", String.valueOf(parking_bays[0]));
         if (demo_bay.equals("0")) lot2_available++;
 
         // data to populate the RecyclerView with
