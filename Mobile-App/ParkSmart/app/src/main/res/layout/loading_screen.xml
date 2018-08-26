@@ -4,8 +4,11 @@
     android:layout_height="fill_parent" android:background="#E5E5E5">
 
     <TextView android:text="@string/parking_lot_loading"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:textColor="#000000">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20sp">
     </TextView>
     <ProgressBar android:id="@+id/mainSpinner1" android:layout_gravity="center"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
