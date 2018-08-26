@@ -79,8 +79,9 @@ linewidth=1.5pt % Width of the border lines around content boxes
 
 
 \headerbox{Introduction}{name=introduction,column=0,row=0}{
-	The Internet of Things (IoT) is the interconnection of everyday objects, via embedded computing devices and the internet, for the purpose of sending and receiving data. \\
-	An IoT parking system enables the availability of parking spaces to be communicated to a user via a mobile application, reducing time and fuel spent searching for a parking space on a daily basis.
+	The Internet of Things (IoT) is the interconnection of everyday objects, via embedded computing devices and the internet, for the purpose of sending and receiving data. 	\vspace{2mm}
+
+	An IoT-based smart parking system enables the availability of parking spaces to be communicated to a user via a user-friendly mobile application. By directing drivers to available parking spaces, the frustration of finding a place to park is mitigated; saving both time and money.
 	\vspace{1mm}
 }
 
@@ -90,61 +91,63 @@ linewidth=1.5pt % Width of the border lines around content boxes
 		\item Provide the most feasible cost effective solution
 		\item Keep the system energy efficient, increasing operational time on a single battery charge
 		\item Make the system scalable to accommodate any parking lot size
-		\item The system should be robust and easy to maintain
+		\item Ensure the system is robust and easy to maintain
 		\item Communicate data through a user-friendly mobile application, built using the Android framework
 	\end{itemize}
-
 }
 
 \headerbox{System Design}{name=sysdesign1,column=0,below=objectives,bottomaligned=bottom}{ 
-
 	\begin{center}
 		\includegraphics[width=0.9\columnwidth]{Picture2}
-		\captionof{figure}{Overall depiction of the implemented system}
+		\captionof{figure}{A high-level depiction of the implemented system}
+		\raggedright
 	\end{center}
 
 	\textbf{System Features}
 		\begin{itemize}[leftmargin=13pt]\compresslist
-			\item Parking space availability detection
+			\item Available parking spaces are detected
 			\item Empty spaces are communicated to users through a user-friendly mobile application
-			\item System updated approximately every 30~s
-			\item Functions during active parking hours (7~am - 3~pm)
-			\item Fail-safes in place in case of node failures
+			\item Parking availability status is updated every 30~seconds
+			\item Operates during active parking hours (7~am - 3~pm)
+			\item Fail-safes are in place in case of node failures
 		\end{itemize}
 	
 	\textbf{Hardware Setup}
 		\begin{itemize}[leftmargin=13pt]\compresslist
 			\item Ultrasonic distance measurement sensor
 			\item Arduino Nano microprocessor
-			\item ESP8266 based Wi-Fi module
 			\item 2.4~GHz radio module
-			\item 2*AA batteries + 5~V boost converter
+			\item 2*AA rechargeable 2300~mAh NiMh batteries
+			\item 5~V boost converter
+			\item ESP8266 based Wi-Fi module
 		\end{itemize}
-	
-	
+
 }
 
-\headerbox{System Design (cont.)}{name=sysdesign2,column=1,span=2,row=0}{%,bottomaligned=bottom}{ 
+\headerbox{System Design (cont.)}
+{name=sysdesign2,column=1,span=2,row=0}{%,bottomaligned=bottom}{ 
 	\begin{multicols}{2}
 		
 		\textbf{Software Setup}
 			\begin{itemize}[leftmargin=13pt]\compresslist
-				\item Scalable RF communication mesh is employed \\(refer to Figure 2)
-				\item System complexity increases with increasing number of parkings if low cost node design is maintained
-				\item Node data is aggregated and uploaded through a single Wi-Fi module (Sink Node)
-				\item Optimised data upload through the ThingSpeak MQTT broker
+				\item A scalable Wireless Sensor Network (WSN) utilising 2.4GHz RF communication is designed
+				%\item  A scalable RF communication mesh network is designed 
+				\item To maintain a low cost node design, system complexity increases with increasing number of parkings
+				\item Sensor data is aggregated and uploaded according to the node hierarchy depicted in Figure~2
+				\item Data upload is optimised by utilising the ThingSpeak MQTT broker
 					\begin{itemize}[leftmargin=13pt]\compresslist
-						\item Minimal connection and upload time
+						\item Very fast connection and upload time
 						\item Small payload size
 					\end{itemize}
-				\item User-friendly mobile application built for Android
+				\item An intuitive mobile application is built for Android
 				\item Parking lot data is retrieved by the application through the provided ThingSpeak API
-				\item Mobile application automatically refreshes with updated parking bay availability data
+				%\item Mobile application automatically refreshes with updated parking bay availability data
+				\item The application automatically updates, ensuring up-to-date parking lot data is always displayed 
 			\end{itemize}
 		
 		\begin{center}
-			\includegraphics[width=0.8\columnwidth]{mesh-cropped}
-			\captionof{figure}{Data retrieval of parking avalability from sensor nodes to sink node}
+			\includegraphics[width=0.9\columnwidth]{mesh-cropped}
+			\captionof{figure}{Visulisation of the flow of data, during retrieval, from Sensor Nodes to Sink Node}
 		\end{center}
 	
 		\textbf{Smart System Operation}
@@ -181,6 +184,7 @@ linewidth=1.5pt % Width of the border lines around content boxes
 		\begin{center}
 			\includegraphics[width=0.67\columnwidth]{app_screenshot2}
 			\captionof{figure}{Screenshot of the developed mobile application }
+			\raggedright
 		\end{center}
 	
 	\end{multicols}
@@ -200,12 +204,12 @@ linewidth=1.5pt % Width of the border lines around content boxes
 		\end{itemize}
 	
 	\begin{center}
-		\includegraphics[width=0.7\columnwidth]{lifetime_vs_consumption3}
+		\includegraphics[width=0.9\columnwidth]{consumption}
 		\captionof{figure}{Graph depicting energy performance of the system}
 	\end{center}
 	
 	\begin{center}
-		\resizebox{1\textwidth}{!}{
+		\resizebox{0.9\textwidth}{!}{
 		\begin{tabular}{c c c}
 			\toprule
 			\textbf{Number of Parkings} & \textbf{Payload Size (B)} & \textbf{Monthly Usage (MB)}\\
