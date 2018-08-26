@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.group18g11.parksmart.R;
 
@@ -26,6 +25,7 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
     public static final int LOT_7 = 6;
 
     private char[][] parking_bays = new char[3][24];
+    private String demo_bay;
 
     MyRecyclerViewAdapter adapter;
 
@@ -61,6 +61,10 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
         for (char parking : parking_bays[2]) {
             if (parking == '0') lot1_available++;
         }
+
+        demo_bay = getIntent().getStringExtra("demo_bay");
+        Log.i("Demo bay result", String.valueOf(parking_bays[0]));
+        if (demo_bay.equals("0")) lot2_available++;
 
         // data to populate the RecyclerView with
         ArrayList<String> parkingLots = new ArrayList<>();
@@ -99,13 +103,16 @@ public class ParkingLotsListActivity extends AppCompatActivity implements MyRecy
 
         switch(position){
             case LOT_1:
-                Intent intent = new Intent(context, LoadingScreenActivity.class);
-                intent.putExtra("row1", parking_bays[0]);
-                intent.putExtra("row2", parking_bays[1]);
-                intent.putExtra("row3", parking_bays[2]);
-                context.startActivity(intent);
+                Intent intent_lot1 = new Intent(context, LoadingScreenActivity_FlowerHall.class);
+                intent_lot1.putExtra("row1", parking_bays[0]);
+                intent_lot1.putExtra("row2", parking_bays[1]);
+                intent_lot1.putExtra("row3", parking_bays[2]);
+                context.startActivity(intent_lot1);
                 break;
             case LOT_2:
+                Intent intent_lot2 = new Intent(context, LoadingScreenActivity_DemoBay.class);
+                intent_lot2.putExtra("demo_bay", demo_bay);
+                context.startActivity(intent_lot2);
                 break;
             case LOT_3:
                 break;

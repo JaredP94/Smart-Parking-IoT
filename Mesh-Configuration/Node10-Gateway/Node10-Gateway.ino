@@ -39,6 +39,11 @@ const float wait = 10;
 float timeoutDist;
 float timeout;
 
+unsigned long total_on_time;
+unsigned long temp_rf_transmit_time1;
+unsigned long temp_rf_transmit_time2;
+unsigned long total_rf_transmit_time;
+
 void setup() { 
   clock_prescale_set(clock_div_16);
   Serial.begin(9600); 
@@ -58,7 +63,7 @@ void setup() {
   myRadio.begin(); 
   network.begin(90, this_node);
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
   for (int i = 0; i < NUM_SENSORS; i++) {
     pinMode(trigger[i], OUTPUT);
@@ -77,6 +82,8 @@ void loop() {
   }
   LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
   LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
+
+  total_on_time = micros();
   
   status = 1;
   received_results = false;
@@ -85,6 +92,9 @@ void loop() {
   row3 = false;
   
   network.update();
+
+  temp_rf_transmit_time1 = micros();
+  
   //===== Sending =====//
   while(!ack4){
     RF24NetworkHeader header2(node4);     // (Address where the data is going)
@@ -107,6 +117,8 @@ void loop() {
     Serial.println(status);
   }
 
+  temp_rf_transmit_time1 = micros() - temp_rf_transmit_time1;
+
   ack4 = false;
   ack9 = false;
   ack16 = false;
@@ -115,6 +127,9 @@ void loop() {
     network.update();
 
     while ( network.available() ) {     // Is there any incoming data?'
+      
+      temp_rf_transmit_time2 = micros();
+      
       Serial.println("Recv");
       RF24NetworkHeader header;
       network.read(header, &dataReceived, sizeof(dataReceived)); // Read the incoming data
@@ -161,6 +176,7 @@ void loop() {
 
       if (row1 && row2 && row3){
         received_results = true;
+        temp_rf_transmit_time2 = micros() - temp_rf_transmit_time2;
       }
     }
   }
@@ -194,12 +210,21 @@ void loop() {
   }
 
   RF24NetworkHeader header5(transmitter);
+  total_rf_transmit_time = micros();
   for (int i = 0; i < NUM_ROWS; i++){
     bool ok = network.write(header5, &parkingBayData[i], sizeof(parkingBayData[i])); // Send the data
     Serial.print("Row Data transmitted to Transmitter: ");
     Serial.println(i);
   }
 
+  total_rf_transmit_time = (micros() - total_rf_transmit_time) + temp_rf_transmit_time1 + temp_rf_transmit_time2;
+  total_on_time = micros() - total_on_time;
+
+  Serial.print("Total rf transmit time: ");
+  Serial.println(total_rf_transmit_time);
+  Serial.print("Total on time: ");
+  Serial.println(total_on_time);
+  
   Serial.flush();
 }
 

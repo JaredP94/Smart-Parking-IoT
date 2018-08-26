@@ -3,10 +3,10 @@ package com.a18g11.parksmart;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,30 +37,21 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ParkingLot1 extends AppCompatActivity {
+public class ParkingLot2 extends AppCompatActivity {
 
     private Context mContext;
     private Activity mActivity;
     private RelativeLayout mCLayout;
 
     GridView gridView;
-    private String[] parkingNumbers = new String[28*14];
-    private char[][] parking_bays = new char[3][24];
-    private Integer[] trackedParkings = {
-            128, 129, 156, 157, 130, 131, 158, 159, 132, 133, 160, 161, 134, 135, 162, 163, 136, 137, 164, 165, 138, 139, 166, 167,
-            212, 213, 240, 241, 214, 215, 242, 243, 216, 217, 244, 245, 218, 219, 246, 247, 220, 221, 248, 249, 222, 223, 250, 251,
-            296, 297, 324, 325, 298, 299, 326, 327, 300, 301, 328, 329, 302, 303, 330, 331, 304, 305, 332, 333, 306, 307, 334, 335
-        };
-    private Integer[] uncovered_parkings = {
-            52, 53, 54, 55, 112, 140, 141, 196, 197, 198, 199, 200, 224, 225, 226, 227, 228, 229, 280, 281, 282, 283, 284, 285, 286, 308, 309, 310, 311, 312, 313, 314, 315, 364, 365, 366, 367, 368, 369, 370, 371, 371
-    };
-    private ArrayList<Character> parkingOccupancy = new ArrayList<>();
-    static final int update_time = 5000;
+    private String[] parkingNumbers = {"3", "3", "3", "3", "3", "3", "4", "4", "4"};
+    private ArrayList<String> parkingOccupancy = new ArrayList<>();
+    static final int update_time = 2000;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parking_lot1);
+        setContentView(R.layout.activity_parking_lot2);
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -86,66 +77,28 @@ public class ParkingLot1 extends AppCompatActivity {
         // Start the queue
         mRequestQueue.start();
 
-        final String url = "https://api.thingspeak.com/channels/542645/fields/2&3&4.json?api_key=GX2QFYAFHEZ86AIO&results=1&timezone=Africa%2FJohannesburg";
+        final String url = "https://api.thingspeak.com/channels/563558/fields/2&3&4.json?api_key=SL1GOUY5H6OB9HWZ&results=1&timezone=Africa%2FJohannesburg";
 
         // Get the application context
         mContext = getApplicationContext();
-        mActivity = ParkingLot1.this;
+        mActivity = ParkingLot2.this;
         mCLayout = findViewById(R.id.relative_layout_parkings);
 
-        parking_bays[0] = getIntent().getCharArrayExtra("row1");
-        parking_bays[1] = getIntent().getCharArrayExtra("row2");
-        parking_bays[2] = getIntent().getCharArrayExtra("row3");
+        String demo_bay = getIntent().getStringExtra("demo_bay");
+        parkingNumbers[4] = demo_bay;
 
-        int rowCounter = 0;
-        int track_index = 0;
-
-        for(int index = 0; index < parkingNumbers.length; index++){
-            if(index % 28 == 0) rowCounter = 0;
-            if(index < 28 || index >= 84 && index < 112 || index >= 168 && index < 196 || index >= 252 && index < 280 || index >= 336 && index < 364){
-                parkingNumbers[index] = " ";
-            }
-            else if((index % 28) % 15 == 0 && rowCounter!=1) {
-                parkingNumbers[index] = "3";
-                rowCounter++;
-            }
-            else if((index % 28) % 15 == 0 && rowCounter==1) {
-                parkingNumbers[index] = " ";
-                rowCounter++;
-            }
-            else{
-                parkingNumbers[index] = "3";
-            }
+        for (String parking : parkingNumbers) {
+            parkingOccupancy.add(parking);
         }
 
-        for (int i = 0; i < 3; i++){
-            for (int j = 0; j < 24; j++){
-                parkingOccupancy.add(parking_bays[i][j]);
-            }
-        }
-
-        for(int index : trackedParkings){
-            parkingNumbers[index] = parkingOccupancy.get(track_index).toString();
-            track_index++;
-        }
-
-        for (int index : uncovered_parkings){
-            parkingNumbers[index] = "4";
-        }
-
-        gridView = (GridView) findViewById(R.id.gridview_parkings);
+        gridView = findViewById(R.id.gridview_parkings);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
                 @NonNull
                 @Override
                 public View getView(int position, View convertView, @NonNull ViewGroup parent){
                 // Cast the grid view current item as a text view
                 TextView tv_cell = (TextView) super.getView(position,convertView,parent);
-
-                if(position == 25){
-                    tv_cell.setTextColor(Color.BLACK);
-                    tv_cell.setTextSize(20);
-                    tv_cell.setText(R.string.entrance);
-                }
+                tv_cell.setText("");
 
                 // Set the item background drawable
                     switch (parkingNumbers[position]) {
@@ -180,12 +133,7 @@ public class ParkingLot1 extends AppCompatActivity {
                     }
 
                 // Put item item text in cell center
-                if(position == 25) {
-                    tv_cell.setGravity(Gravity.TOP);
-                }
-                else {
-                    tv_cell.setGravity(Gravity.CENTER);
-                }
+                tv_cell.setGravity(Gravity.CENTER);
 
                 /*
                     void setHeight (int pixels)
@@ -202,14 +150,8 @@ public class ParkingLot1 extends AppCompatActivity {
                 //tv_cell.setHeight(300); // In pixels
 
                 // Another way to change grid view row height
-                if(position == 25) {
-                    tv_cell.getLayoutParams().height = 100;
-                    tv_cell.getLayoutParams().width = 400;
-                }
-                else{
-                    tv_cell.getLayoutParams().height = height/14;
-                    tv_cell.getLayoutParams().width = width/28;
-                }
+                tv_cell.getLayoutParams().height = height/3;
+                tv_cell.getLayoutParams().width = width/3;
 
                 // Return the modified item
                 return tv_cell;
@@ -231,36 +173,20 @@ public class ParkingLot1 extends AppCompatActivity {
                       @Override
                       public void onResponse(JSONObject response) {
                           Log.i("API Resp ", response.toString());
-                          //data[0] = response.getJSONObject("channel");
                           try {
                               JSONArray feeds = response.getJSONArray("feeds");
                               JSONObject latest_feed = feeds.getJSONObject(0);
-                              parking_bays[0] = latest_feed.get("field2").toString().toCharArray();
-                              parking_bays[1] = latest_feed.get("field3").toString().toCharArray();
-                              parking_bays[2] = latest_feed.get("field4").toString().toCharArray();
+                              String demo_bay = latest_feed.get("field2").toString();
 
                               Log.i("Feed ", feeds.toString());
                               Log.i("Latest Feed ", latest_feed.get("field2").toString());
-                              Log.i("Parking Bays 1 ", String.valueOf(parking_bays[0]));
-                              Log.i("Parking Bays 2 ", String.valueOf(parking_bays[1]));
-                              Log.i("Parking Bays 3 ", String.valueOf(parking_bays[2]));
+                              Log.i("Demo Bay ", String.valueOf(demo_bay));
 
-                              int track_index = 0;
                               parkingOccupancy.clear();
+                              parkingNumbers[4] = demo_bay;
 
-                              for (int i = 0; i < 3; i++){
-                                  for (int j = 0; j < 24; j++){
-                                      parkingOccupancy.add(parking_bays[i][j]);
-                                  }
-                              }
-
-                              for(int index : trackedParkings){
-                                  parkingNumbers[index] = parkingOccupancy.get(track_index).toString();
-                                  track_index++;
-                              }
-
-                              for (int index : uncovered_parkings){
-                                  parkingNumbers[index] = "4";
+                              for (String parking : parkingNumbers) {
+                                  parkingOccupancy.add(parking);
                               }
 
                               ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, parkingNumbers){
@@ -269,12 +195,7 @@ public class ParkingLot1 extends AppCompatActivity {
                                   public View getView(int position, View convertView, @NonNull ViewGroup parent){
                                       // Cast the grid view current item as a text view
                                       TextView tv_cell = (TextView) super.getView(position,convertView,parent);
-
-                                      if(position == 25){
-                                          tv_cell.setTextColor(Color.BLACK);
-                                          tv_cell.setTextSize(20);
-                                          tv_cell.setText(R.string.entrance);
-                                      }
+                                      tv_cell.setText("");
 
                                       // Set the item background drawable
                                       switch (parkingNumbers[position]) {
@@ -309,12 +230,7 @@ public class ParkingLot1 extends AppCompatActivity {
                                       }
 
                                       // Put item item text in cell center
-                                      if(position == 25) {
-                                          tv_cell.setGravity(Gravity.TOP);
-                                      }
-                                      else {
-                                          tv_cell.setGravity(Gravity.CENTER);
-                                      }
+                                      tv_cell.setGravity(Gravity.CENTER);
 
                                         /*
                                             void setHeight (int pixels)
@@ -331,14 +247,8 @@ public class ParkingLot1 extends AppCompatActivity {
                                       //tv_cell.setHeight(300); // In pixels
 
                                       // Another way to change grid view row height
-                                      if(position == 25) {
-                                          tv_cell.getLayoutParams().height = 100;
-                                          tv_cell.getLayoutParams().width = 400;
-                                      }
-                                      else{
-                                          tv_cell.getLayoutParams().height = height/14;
-                                          tv_cell.getLayoutParams().width = width/28;
-                                      }
+                                      tv_cell.getLayoutParams().height = height/3;
+                                      tv_cell.getLayoutParams().width = width/3;
 
                                       // Return the modified item
                                       return tv_cell;

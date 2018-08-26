@@ -22,6 +22,10 @@ const int echo[NUM_SENSORS] = {3, 5, 7, 9};
 float timeoutDist;
 float timeout;
 
+unsigned long total_on_time;
+unsigned long temp_rf_transmit_time;
+unsigned long total_transmit_time;
+
 void setup() {
   clock_prescale_set(clock_div_16);
   Serial.begin(9600);
@@ -31,7 +35,7 @@ void setup() {
   myRadio.begin();
   network.begin(90, this_node); //(channel, node address)
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
   for (int i = 0; i < NUM_SENSORS; i++) {
     pinMode(trigger[i], OUTPUT);
@@ -48,6 +52,11 @@ void loop() {
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
   LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
+  LowPower.powerDown(SLEEP_250MS, ADC_OFF, BOD_OFF);
+
+  Serial.print("on");
+  total_on_time = micros();
 
   returned_results = false;
 
@@ -55,9 +64,11 @@ void loop() {
     network.update();
     //===== Receiving =====//
     while ( network.available() ) {     // Is there any incoming data?
+      temp_rf_transmit_time = micros();
       RF24NetworkHeader header;
       unsigned long incomingData = 0;
       network.read(header, &incomingData, sizeof(incomingData)); // Read the incoming data
+      temp_rf_transmit_time = micros() - temp_rf_transmit_time;
       Serial.print("Data received: ");
       Serial.println(incomingData);
       if (header.from_node == row_admin) {    // If data comes from Node 4
@@ -80,17 +91,26 @@ void loop() {
         digitalWrite(A5, LOW);
         
         bool ok = false;
+        total_transmit_time = micros();
         while (!ok){
           Serial.println(F("Attempt transmission to row admin"));
           RF24NetworkHeader header2(row_admin);     // (Address where the data is going)
           ok = network.write(header2, &isOccupied, sizeof(isOccupied)); // Send the data
           delay(10);
         }
+        total_transmit_time = (micros() - total_transmit_time) + temp_rf_transmit_time;
         Serial.print("Data transmitted to row admin: ");
         returned_results = true;
       }
     }
   }
+
+  total_on_time = micros() - total_on_time;
+
+  Serial.print("Total transmit time: ");
+  Serial.println(total_transmit_time);
+  Serial.print("Total on time: ");
+  Serial.println(total_on_time);
 
   Serial.flush();
 }

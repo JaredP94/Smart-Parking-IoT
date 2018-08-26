@@ -8,15 +8,15 @@
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
 #define NUM_ROWS 3
-#define SLEEP_TIME 28e6
+#define SLEEP_TIME 32e6
 
 char ssid[] = WIFI_SSID; //  Change this to your network SSID (name).
 char pass[] = WIFI_PASSWORD;  // Change this your network password
 char mqttUserName[] = "GatewayNode";  // Can be any name.
-char mqttPass[] = "YYC34E16RCBXMVW4";  // Change this your MQTT API Key from Account > MyProfile.
-char writeAPIKey[] = "Y7F65B7CI35LQNJ3";    // Change to your channel Write API Key.
-long channelID = 542645;
-char* topic ="channels/542645/publish/Y7F65B7CI35LQNJ3";
+char mqttPass[] = MQTT_PASSWORD;  // Change this your MQTT API Key from Account > MyProfile.
+char writeAPIKey[] = WRITE_API_KEY;    // Change to your channel Write API Key.
+long channelID = CHANNEL_ID;
+char* topic = PUBLISH_TOPIC;
 char* server = "mqtt.thingspeak.com";
 
 WiFiClient wifiClient;
@@ -31,6 +31,10 @@ RF24Network network(myRadio);
 
 unsigned long current_time;
 unsigned long upload_duration;
+unsigned long total_on_time;
+unsigned long total_wifi_on_time;
+unsigned long total_wifi_transmit_time;
+
 bool received_results;
 bool incoming;
 int row_number;
@@ -49,6 +53,8 @@ bool row3 = false;
 void setup() { 
   Serial.begin(9600); 
   Serial.println(F("Transmitter - Node19")); 
+
+  total_on_time = micros();
   
   for (int i = 0; i < NUM_PARKINGS; i++) {
     dataReceived[i] = -1;
@@ -64,8 +70,9 @@ void setup() {
   myRadio.begin(); 
   network.begin(90, this_node);
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
+  total_wifi_on_time = micros();
   WiFi.begin(ssid, pass);
   Serial.print("MAC: ");
   Serial.println(WiFi.macAddress());
@@ -215,8 +222,11 @@ void loop() {
     Serial.print("Sending payload: ");
     Serial.println(payload);
     
+    total_wifi_transmit_time = micros();
+    
     if (client.publish(topic, (char*) payload.c_str())) {
       Serial.println("Publish ok");
+      total_wifi_transmit_time = micros() - total_wifi_transmit_time;
     }
     else {
       Serial.println("Publish failed");
@@ -224,6 +234,15 @@ void loop() {
   }
 
   upload_duration = micros() - current_time;
+  total_on_time = micros() - total_on_time;
+  total_wifi_on_time = micros() - total_wifi_on_time;
+
+  Serial.print("Total wifi transmit time: ");
+  Serial.println(total_wifi_transmit_time);
+  Serial.print("Total wifi time: ");
+  Serial.println(total_wifi_on_time);
+  Serial.print("Total on time: ");
+  Serial.println(total_on_time);
 
   Serial.flush();
 

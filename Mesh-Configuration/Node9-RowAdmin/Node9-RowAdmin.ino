@@ -6,7 +6,7 @@
 
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
-#define TIMEOUT_TIME 3000
+#define TIMEOUT_TIME 300
 #define WAIT_TIME 10
 
 RF24 myRadio (A0, 10);
@@ -51,7 +51,7 @@ void setup() {
   myRadio.begin();
   network.begin(90, this_node); //(channel, node address)
   myRadio.setDataRate(RF24_250KBPS);
-  myRadio.setPALevel(RF24_PA_MIN); 
+  myRadio.setPALevel(RF24_PA_HIGH); 
 
   for (int i = 0; i < NUM_SENSORS; i++) {
     pinMode(trigger[i], OUTPUT);
@@ -70,7 +70,9 @@ void loop() {
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
   }
   LowPower.powerDown(SLEEP_4S, ADC_OFF, BOD_OFF);
-
+  LowPower.powerDown(SLEEP_2S, ADC_OFF, BOD_OFF);
+  //LowPower.powerDown(SLEEP_500MS, ADC_OFF, BOD_OFF);
+  
   status_received = false;
   returned_results = false;
   timer_running = false;

@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.group18g11.parksmart.R;
 
-public class LoadingScreenActivity extends Activity {
+public class LoadingScreenActivity_FlowerHall extends Activity {
 
     private char[][] parking_bays = new char[3][24];
 
@@ -27,12 +27,12 @@ public class LoadingScreenActivity extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the ProfileData-Activity. */
-                Intent intent = new Intent(LoadingScreenActivity.this, ParkingLot1.class);
+                Intent intent = new Intent(LoadingScreenActivity_FlowerHall.this, ParkingLot1.class);
                 intent.putExtra("row1", parking_bays[0]);
                 intent.putExtra("row2", parking_bays[1]);
                 intent.putExtra("row3", parking_bays[2]);
-                LoadingScreenActivity.this.startActivity(intent);
-                LoadingScreenActivity.this.finish();
+                LoadingScreenActivity_FlowerHall.this.startActivity(intent);
+                LoadingScreenActivity_FlowerHall.this.finish();
             }
         }, WAIT_TIME);
     }
