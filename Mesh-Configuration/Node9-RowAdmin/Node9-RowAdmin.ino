@@ -6,7 +6,7 @@
 
 #define NUM_PARKINGS 24
 #define NUM_SENSORS 4
-#define TIMEOUT_TIME 250
+#define TIMEOUT_TIME 300
 #define WAIT_TIME 10
 
 RF24 myRadio (A0, 10);
