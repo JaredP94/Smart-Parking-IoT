@@ -38,7 +38,7 @@ void setup() {
   Serial.begin(9600); 
   Serial.println(F("MultiDemoNode - Node0")); 
 
-  timeoutDist = 200;
+  timeoutDist = 100;
   pinMode(TRIGGER, OUTPUT);
   pinMode(ECHO, INPUT);
   pinMode(MOSFET, OUTPUT);
