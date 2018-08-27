@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/custom_ripple"
     android:fitsSystemWindows="true"
-    tools:context=".ParkingLotsListActivity">
+    tools:context="com.a18g11.parksmart.ParkingLotsListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="?android:attr/selectableItemBackground">
+        >
 
         <TextView
             android:id="@+id/textView"

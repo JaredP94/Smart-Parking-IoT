@@ -140,6 +140,7 @@ public class ParkingLot1 extends AppCompatActivity {
                 public View getView(int position, View convertView, @NonNull ViewGroup parent){
                 // Cast the grid view current item as a text view
                 TextView tv_cell = (TextView) super.getView(position,convertView,parent);
+                tv_cell.setText("");
 
                 if(position == 25){
                     tv_cell.setTextColor(Color.BLACK);
@@ -269,6 +270,7 @@ public class ParkingLot1 extends AppCompatActivity {
                                   public View getView(int position, View convertView, @NonNull ViewGroup parent){
                                       // Cast the grid view current item as a text view
                                       TextView tv_cell = (TextView) super.getView(position,convertView,parent);
+                                      tv_cell.setText("");
 
                                       if(position == 25){
                                           tv_cell.setTextColor(Color.BLACK);

@@ -24,7 +24,6 @@
             android:name="com.a18g11.parksmart.ParkingLotsListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_parking_lots_list"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.a18g11.parksmart.ParkingLot1"
